@@ -1,0 +1,2269 @@
+{
+  "source": "Livrinho_de_Cola_Python_atualizado.docx",
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Variáveis e valores",
+      "intro": [
+        "Variáveis são nomes usados para guardar valores. O nome fica do lado esquerdo do = e o valor inicial fica do lado direito."
+      ],
+      "sections": [
+        {
+          "number": "1.1",
+          "title": "Criar uma variável",
+          "lines": [
+            "nome = valor",
+            "O que faz: Cria um nome que passa a apontar para um valor.",
+            "Exemplo:",
+            "nome = \"Yan\"",
+            "idade = 18",
+            "Resultado: nome guarda \"Yan\" e idade guarda 18.",
+            "Como funciona: O Python avalia o lado direito e associa o resultado ao nome do lado esquerdo.",
+            "Se não usar: Qualquer tentativa de usar o nome antes da criação pode gerar NameError.",
+            "Relacionado: use nomes claros em snake_case, como total_vendas; o nome diferencia maiúsculas de minúsculas, então total e Total são variáveis distintas."
+          ],
+          "aliases": [],
+          "id": "secao-1-1"
+        },
+        {
+          "number": "1.2",
+          "title": "Atualizar com +=",
+          "lines": [
+            "variavel += valor",
+            "O que faz: Adiciona um valor ao que a variável já possui.",
+            "Exemplo:",
+            "pontos = 10",
+            "pontos += 5",
+            "Resultado: pontos passa a valer 15.",
+            "Como funciona: É uma forma curta de escrever pontos = pontos + 5.",
+            "Se não usar: O acréscimo não aconteceria nessa etapa.",
+            "Relacionado: += também pode juntar textos ou acrescentar itens de outra coleção a uma lista; para substituir tudo pelo novo valor, use atribuição simples com =."
+          ],
+          "aliases": [],
+          "id": "secao-1-2"
+        },
+        {
+          "number": "1.3",
+          "title": "Atualizar com -=",
+          "lines": [
+            "variavel -= valor",
+            "O que faz: Subtrai um valor do que a variável já possui.",
+            "Exemplo:",
+            "saldo = 100",
+            "saldo -= 20",
+            "Resultado: saldo passa a valer 80.",
+            "Como funciona: É uma forma curta de escrever saldo = saldo - 20.",
+            "Se não usar: O valor não seria reduzido.",
+            "Relacionado: -= é uma forma abreviada de saldo = saldo - valor; para valores que podem ser texto, esse operador não se aplica."
+          ],
+          "aliases": [],
+          "id": "secao-1-3"
+        },
+        {
+          "number": "1.4",
+          "title": "Várias variáveis de uma vez",
+          "lines": [
+            "a, b = 10, 20",
+            "O que faz: Atribui valores a duas ou mais variáveis na mesma linha.",
+            "Exemplo:",
+            "x, y = 3, 7",
+            "Resultado: x vale 3 e y vale 7.",
+            "Como funciona: O Python desempacota os valores da direita e associa cada um ao nome correspondente.",
+            "Se não usar: Seria necessário fazer cada atribuição separadamente.",
+            "Relacionado: a quantidade de variáveis deve combinar com a quantidade de valores; a mesma técnica permite trocar valores com a, b = b, a."
+          ],
+          "aliases": [],
+          "id": "secao-1-4"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-1"
+    },
+    {
+      "number": 2,
+      "title": "Entrada e saída",
+      "intro": [
+        "Essa parte conecta o programa com a pessoa que está usando. print mostra informação; input recebe informação."
+      ],
+      "sections": [
+        {
+          "number": "2.1",
+          "title": "Mostrar informações com print()",
+          "lines": [
+            "print(valor)",
+            "O que faz: Mostra um valor ou texto na tela.",
+            "Exemplo:",
+            "print(\"Olá!\")",
+            "print(10)",
+            "Resultado: Olá! e depois 10.",
+            "Como funciona: Tudo que está dentro dos parênteses é enviado para a saída.",
+            "Se não usar: O programa poderia calcular, mas esse print específico não mostraria o resultado.",
+            "Relacionado: sep define o que fica entre vários valores e end define o que vem no final; por padrão, sep é um espaço e end é uma quebra de linha."
+          ],
+          "aliases": [],
+          "id": "secao-2-1"
+        },
+        {
+          "number": "2.2",
+          "title": "Receber dados com input()",
+          "lines": [
+            "input(mensagem)",
+            "O que faz: Pede uma informação e devolve o que foi digitado como texto.",
+            "Exemplo:",
+            "nome = input(\"Nome: \")",
+            "Resultado: Se a pessoa digitar Yan, nome recebe \"Yan\".",
+            "Como funciona: O programa mostra a mensagem, pausa e espera a entrada.",
+            "Se não usar: O programa não receberia essa informação dessa forma.",
+            "Atenção: input() sempre devolve texto, mesmo quando a pessoa digita números; use strip() para remover espaços nas pontas e int() ou float() para converter."
+          ],
+          "aliases": [],
+          "id": "secao-2-2"
+        },
+        {
+          "number": "2.3",
+          "title": "Converter a entrada com int()",
+          "lines": [
+            "int(valor)",
+            "O que faz: Converte para número inteiro.",
+            "Exemplo:",
+            "idade = int(\"18\")",
+            "dobro = idade * 2",
+            "Resultado: idade vale 18 e dobro vale 36.",
+            "Como funciona: input() devolve texto, então int() transforma \"18\" em 18 para cálculos numéricos.",
+            "Se não usar: O valor permaneceria texto se não fosse convertido.",
+            "Relacionado: int() aceita textos de inteiros como -3, mas int(\"2.5\") gera ValueError; use float() para números com casas decimais e trate entradas inválidas com try/except."
+          ],
+          "aliases": [],
+          "id": "secao-2-3"
+        },
+        {
+          "number": "2.4",
+          "title": "Converter para decimal com float()",
+          "lines": [
+            "float(valor)",
+            "O que faz: Converte para número que pode ter casas decimais.",
+            "Exemplo:",
+            "preco = float(\"19.90\")",
+            "Resultado: preco vale 19.9.",
+            "Como funciona: float(\"19.90\") produz um número decimal.",
+            "Se não usar: O valor continuaria como texto.",
+            "Atenção: float() espera ponto como separador decimal, por exemplo \"19.90\"; texto \"19,90\" não é convertido automaticamente pela configuração regional."
+          ],
+          "aliases": [],
+          "id": "secao-2-4"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-2"
+    },
+    {
+      "number": 3,
+      "title": "Listas",
+      "intro": [
+        "Lista é uma coleção ordenada. Os índices começam em 0, não em 1. Pequena tradição da programação criada para manter iniciantes humildes."
+      ],
+      "sections": [
+        {
+          "number": "3.1",
+          "title": "Criar uma lista",
+          "lines": [
+            "lista = []",
+            "O que faz: Cria uma lista vazia.",
+            "Exemplo:",
+            "lista = [\"Arroz\", \"Feijão\", \"Leite\"]",
+            "Resultado: A lista possui três itens.",
+            "Como funciona: Os colchetes [] representam a lista e os valores ficam separados por vírgulas.",
+            "Se não usar: Não haveria a coleção criada para armazenar esses itens.",
+            "Relacionado: listas podem ser alteradas depois de criadas; se os itens devem permanecer fixos, considere uma tupla. Em um mesmo programa, prefira manter itens de tipos previsíveis."
+          ],
+          "aliases": [],
+          "id": "secao-3-1"
+        },
+        {
+          "number": "3.2",
+          "title": "Acessar pelo índice",
+          "lines": [
+            "lista[indice]",
+            "O que faz: Acessa um item pela posição.",
+            "Exemplo:",
+            "frutas = [\"Maçã\", \"Banana\", \"Uva\"]",
+            "print(frutas[0])",
+            "Resultado: Maçã.",
+            "Como funciona: O índice 0 representa o primeiro item; 1 representa o segundo.",
+            "Se não usar: Você teria que acessar os dados por outra forma.",
+            "Relacionado: índice e valor são coisas diferentes; lista.index(valor) procura a posição do valor, enquanto lista[posicao] acessa diretamente e gera IndexError se a posição não existir.",
+            "Atenção: list.index(valor) gera ValueError se o valor não estiver na lista; use valor in lista para verificar antes quando a ausência for possível."
+          ],
+          "aliases": [],
+          "id": "secao-3-2"
+        },
+        {
+          "number": "3.3",
+          "title": "Acessar do fim",
+          "lines": [
+            "lista[-1]",
+            "O que faz: Acessa o último item.",
+            "Exemplo:",
+            "frutas = [\"Maçã\", \"Banana\", \"Uva\"]",
+            "print(frutas[-1])",
+            "Resultado: Uva.",
+            "Como funciona: Índices negativos contam a partir do final: -1 é o último.",
+            "Se não usar: Seria mais trabalhoso pegar o último item sem saber previamente a posição.",
+            "Relacionado: índices negativos contam a partir do fim; lista[-1] lê o último item e lista.pop() remove e devolve esse mesmo item. Uma lista vazia não tem índice -1."
+          ],
+          "aliases": [
+            "último item da lista",
+            "pegar último item"
+          ],
+          "id": "secao-3-3"
+        },
+        {
+          "number": "3.4",
+          "title": "Adicionar com append()",
+          "lines": [
+            "lista.append(valor)",
+            "O que faz: Adiciona um item no final da lista.",
+            "Exemplo:",
+            "lista = [\"Arroz\"]",
+            "lista.append(\"Feijão\")",
+            "Resultado: [\"Arroz\", \"Feijão\"].",
+            "Como funciona: append recebe o novo valor e o coloca no final.",
+            "Se não usar: \"Feijão\" não entraria na lista.",
+            "Relacionado: append(outra_lista) coloca a lista inteira como um item; extend(outra_lista) acrescenta cada item dela; insert(posicao, valor) insere em uma posição específica."
+          ],
+          "aliases": [
+            "adicionar item na lista",
+            "adicionar à lista",
+            "colocar item na lista",
+            "inserir item",
+            "append",
+            "acrescentar item"
+          ],
+          "id": "secao-3-4"
+        },
+        {
+          "number": "3.5",
+          "title": "Remover com remove()",
+          "lines": [
+            "lista.remove(valor)",
+            "O que faz: Remove a primeira ocorrência de um valor.",
+            "Exemplo:",
+            "lista = [\"Arroz\", \"Feijão\"]",
+            "lista.remove(\"Arroz\")",
+            "Resultado: [\"Feijão\"].",
+            "Como funciona: O Python procura o valor e remove a primeira ocorrência encontrada.",
+            "Se não usar: O item permaneceria na lista.",
+            "Relacionado: remove(valor) procura pelo valor e remove sua primeira ocorrência; pop(indice) remove pela posição e devolve o item. Use valor in lista antes de remove() se o valor puder faltar."
+          ],
+          "aliases": [
+            "remover por valor",
+            "apagar item da lista",
+            "remove"
+          ],
+          "id": "secao-3-5"
+        },
+        {
+          "number": "3.6",
+          "title": "Remover com pop()",
+          "lines": [
+            "lista.pop(indice)",
+            "O que faz: Remove e devolve um item.",
+            "Exemplo:",
+            "lista = [\"A\", \"B\", \"C\"]",
+            "item = lista.pop(1)",
+            "Resultado: item vale \"B\" e a lista vira [\"A\", \"C\"].",
+            "Como funciona: O índice 1 aponta para B; pop remove esse item e ainda permite guardá-lo.",
+            "Se não usar: Você teria de localizar e remover o item de outra maneira.",
+            "Relacionado: pop() devolve o item removido; del lista[indice] remove sem devolvê-lo, e remove(valor) procura pelo conteúdo em vez da posição."
+          ],
+          "aliases": [
+            "remover pelo índice",
+            "retirar e guardar item",
+            "pop"
+          ],
+          "id": "secao-3-6"
+        },
+        {
+          "number": "3.7",
+          "title": "Contar itens com len()",
+          "lines": [
+            "len(lista)",
+            "O que faz: Retorna a quantidade de itens da lista.",
+            "Exemplo:",
+            "lista = [\"A\", \"B\", \"C\"]",
+            "print(len(lista))",
+            "Resultado: 3.",
+            "Como funciona: O Python conta quantos elementos existem na lista.",
+            "Se não usar: Seria necessário contar os elementos manualmente.",
+            "Relacionado: len(lista) conta itens; lista.count(valor) conta quantas vezes um valor aparece. Para verificar se está vazia, use if not lista."
+          ],
+          "aliases": [],
+          "id": "secao-3-7"
+        },
+        {
+          "number": "3.8",
+          "title": "Fatiar uma lista",
+          "lines": [
+            "lista[inicio:fim]",
+            "O que faz: Pega uma parte da lista sem incluir o índice final.",
+            "Exemplo:",
+            "numeros = [0, 1, 2, 3, 4]",
+            "print(numeros[1:4])",
+            "Resultado: [1, 2, 3].",
+            "Como funciona: Começa no índice 1 e para antes do índice 4.",
+            "Se não usar: Você teria de acessar e montar os itens individualmente.",
+            "Atenção: o índice final do fatiamento fica de fora; numeros[1:4] pega as posições 1, 2 e 3. Um terceiro valor define o passo, e numeros[::-1] percorre a lista ao contrário."
+          ],
+          "aliases": [],
+          "id": "secao-3-8"
+        },
+        {
+          "number": "3.9",
+          "title": "Lista dentro de lista (lista aninhada)",
+          "lines": [
+            "carrinho_de_compras = [\n    [\"Salgadinho\", 2.99],\n    [\"Pão\", 2.50],\n    [\"Leite\", 3.19]\n]",
+            "O que faz: Permite colocar listas dentro de outra lista. É útil para representar vários registros com várias informações.",
+            "Exemplo:\ncarrinho_de_compras = [\n    [\"Salgadinho\", 2.99],\n    [\"Pão\", 2.50],\n    [\"Leite\", 3.19]\n]",
+            "Resultado: A lista externa contém listas internas. Visualmente, cada lista interna pode ser vista como uma linha de uma mini planilha: coluna 0 = nome e coluna 1 = preço.",
+            "Como funciona: A ideia de linhas e colunas é uma analogia visual. Python continua trabalhando com listas, não com uma planilha de verdade.",
+            "Se não usar: Você perderia essa forma organizada de agrupar vários dados relacionados.",
+            "Relacionado: cada lista interna pode representar um registro ou uma linha de tabela; se cada campo tiver um nome fixo, um dicionário pode deixar o acesso mais legível."
+          ],
+          "aliases": [],
+          "id": "secao-3-9"
+        },
+        {
+          "number": "3.10",
+          "title": "Acessar, alterar e adicionar em uma lista aninhada",
+          "lines": [
+            "lista[linha][coluna]",
+            "O que faz: Permite chegar a um elemento específico usando primeiro o índice da lista interna e depois o índice dentro dela.",
+            "Exemplo:\ncarrinho_de_compras[1][1] = 3.00\ncarrinho_de_compras[1].append(\"Padaria\")\ncarrinho_de_compras.append([\"Sorvete\", 6.99])",
+            "Resultado: A linha 1 passa a ter preço 3.00; Padaria é adicionada nessa linha; uma nova linha é adicionada ao final.",
+            "Como funciona: O primeiro índice escolhe a linha/lista interna. O segundo escolhe a coluna/posição. append na lista interna adiciona um elemento naquela linha; append na lista externa adiciona uma nova linha.",
+            "Se não usar: Você teria de modificar os dados por outra forma.",
+            "Relacionado: lista[linha][coluna] altera um valor que já existe; lista[linha].append(valor) acrescenta um novo campo ao fim dessa linha. Cada índice continua começando em zero."
+          ],
+          "aliases": [],
+          "id": "secao-3-10"
+        },
+        {
+          "number": "3.11",
+          "title": "for em listas aninhadas",
+          "lines": [
+            "for item in carrinho_de_compras:",
+            "O que faz: Percorre cada lista interna. Em cada rodada, item recebe a linha inteira.",
+            "Exemplo:\nfor item in carrinho_de_compras:\n    print(item[0])\n\n# item[0] = nome\n# item[1] = preço",
+            "Resultado: A cada rodada, item recebe uma linha como [\"Salgadinho\", 2.99]. item[0] pega o nome e item[1] pega o preço.",
+            "Como funciona: O for percorre as linhas; depois os índices selecionam as colunas dentro da linha.",
+            "Se não usar: Você teria de acessar cada linha manualmente.",
+            "Relacionado: enumerate(lista) fornece posição e linha juntos; evite alterar a estrutura principal da lista enquanto percorre as linhas, pois posições podem mudar."
+          ],
+          "aliases": [],
+          "id": "secao-3-11"
+        },
+        {
+          "number": "3.12",
+          "title": "Numerar as linhas com enumerate()",
+          "lines": [
+            "for numero, item in enumerate(carrinho_de_compras, start=1):",
+            "O que faz: Entrega o número da posição e a linha ao mesmo tempo. start=1 faz a numeração começar em 1.",
+            "Exemplo:\nfor numero, item in enumerate(carrinho_de_compras, start=1):\n    print(numero, item[0])",
+            "Resultado: Mostra 1 Salgadinho, 2 Pão, 3 Leite e assim por diante.",
+            "Como funciona: enumerate cria pares de posição e elemento. numero recebe a numeração e item recebe a lista interna. Sem start=1, começa em 0.",
+            "Se não usar: Você precisaria controlar um contador manualmente.",
+            "Relacionado: start=1 muda apenas o número devolvido por enumerate(), não os índices reais da lista, que continuam começando em zero."
+          ],
+          "aliases": [],
+          "id": "secao-3-12"
+        },
+        {
+          "number": "3.13",
+          "title": "Índices encadeados",
+          "lines": [
+            "item[0][1]",
+            "O que faz: Acessa uma posição dentro do elemento obtido pelo primeiro índice.",
+            "Exemplo:\nitem = [\"Salgadinho\", 2.99]\nprint(item[0])\nprint(item[1])\nprint(item[0][1])",
+            "Resultado: item[0] é \"Salgadinho\"; item[1] é 2.99; item[0][1] é a segunda letra de \"Salgadinho\", ou \"a\".",
+            "Como funciona: O Python avalia da esquerda para a direita: primeiro item[0] produz uma string; depois [1] acessa a posição 1 dessa string.",
+            "Se não usar: Você não teria essa forma de acessar níveis internos.",
+            "Relacionado: cada par de colchetes desce um nível; salve primeiro item[0] em uma variável se for usar o mesmo subitem várias vezes."
+          ],
+          "aliases": [],
+          "id": "secao-3-13"
+        }
+      ],
+      "content": [],
+      "aliases": [
+        "lista",
+        "listas",
+        "coleção",
+        "colecoes",
+        "array",
+        "adicionar item na lista",
+        "colocar item na lista",
+        "remover item da lista"
+      ],
+      "id": "capitulo-3"
+    },
+    {
+      "number": 4,
+      "title": "Dicionários",
+      "intro": [
+        "Dicionários guardam dados no formato chave: valor. Em vez de pensar em posição, você pensa no nome da informação."
+      ],
+      "sections": [
+        {
+          "number": "4.1",
+          "title": "Criar um dicionário",
+          "lines": [
+            "dic = {}",
+            "O que faz: Cria um dicionário vazio.",
+            "Exemplo:",
+            "carrinho = {}",
+            "Resultado: carrinho é um dicionário vazio.",
+            "Como funciona: As chaves e os valores podem ser adicionados depois.",
+            "Se não usar: Não existiria o dicionário para armazenar esses dados.",
+            "Relacionado: cada chave aparece uma única vez e aponta para um valor; uma nova atribuição à mesma chave troca o valor anterior em vez de criar outra entrada."
+          ],
+          "aliases": [
+            "criar dicionário",
+            "criar dict"
+          ],
+          "id": "secao-4-1"
+        },
+        {
+          "number": "4.2",
+          "title": "Adicionar ou alterar uma chave",
+          "lines": [
+            "dic[chave] = valor",
+            "O que faz: Cria uma chave ou troca o valor de uma chave existente.",
+            "Exemplo:",
+            "carrinho[\"Arroz\"] = 10.50",
+            "Resultado: {\"Arroz\": 10.5}.",
+            "Como funciona: A chave \"Arroz\" passa a apontar para o valor 10.5.",
+            "Se não usar: O item não seria adicionado ou atualizado por essa linha.",
+            "Relacionado: dic[chave] = valor cria ou substitui; dic.update(outro_dicionario) aplica várias atribuições de uma vez, e setdefault() só define a chave se ela ainda não existir."
+          ],
+          "aliases": [
+            "chave e valor",
+            "adicionar chave e valor"
+          ],
+          "id": "secao-4-2"
+        },
+        {
+          "number": "4.3",
+          "title": "Acessar uma chave",
+          "lines": [
+            "dic[chave]",
+            "O que faz: Pega o valor ligado a uma chave.",
+            "Exemplo:",
+            "carrinho = {\"Arroz\": 10.50}",
+            "print(carrinho[\"Arroz\"])",
+            "Resultado: 10.5.",
+            "Como funciona: O Python procura a chave e devolve o valor correspondente.",
+            "Se não usar: Você não obteria aquele valor por essa chave.",
+            "Atenção: dic[chave] gera KeyError se a chave faltar; use get() quando a ausência for esperada ou if chave in dic para verificar antes."
+          ],
+          "aliases": [
+            "acessar valor pela chave",
+            "buscar chave no dicionário"
+          ],
+          "id": "secao-4-3"
+        },
+        {
+          "number": "4.4",
+          "title": "Percorrer chave e valor com items()",
+          "lines": [
+            "dic.items()",
+            "O que faz: Entrega pares de chave e valor, muito útil em for.",
+            "Exemplo:",
+            "for item, valor in carrinho.items():",
+            "print(item, valor)",
+            "Resultado: Cada repetição fornece um item e seu valor.",
+            "Como funciona: items() permite desempacotar a chave em item e o valor em valor.",
+            "Se não usar: for item in carrinho forneceria somente as chaves.",
+            "Relacionado: items() é útil quando precisa de chave e valor; use keys() para percorrer só chaves e values() para percorrer só valores."
+          ],
+          "aliases": [
+            "percorrer dicionário",
+            "percorrer chave e valor",
+            "items"
+          ],
+          "id": "secao-4-4"
+        },
+        {
+          "number": "4.5",
+          "title": "Pegar somente chaves ou valores",
+          "lines": [
+            "dic.keys() / dic.values()",
+            "O que faz: Entrega as chaves ou os valores do dicionário.",
+            "Exemplo:",
+            "print(carrinho.keys())",
+            "print(carrinho.values())",
+            "Resultado: Uma coleção de chaves e outra de valores.",
+            "Como funciona: keys() seleciona chaves; values() seleciona valores.",
+            "Se não usar: Você precisaria trabalhar com o dicionário completo.",
+            "Relacionado: keys() e values() mostram visões ligadas ao dicionário; list(dic.keys()) cria uma lista separada quando você precisa guardar uma cópia das chaves."
+          ],
+          "aliases": [
+            "keys",
+            "values",
+            "obter chaves",
+            "obter valores"
+          ],
+          "id": "secao-4-5"
+        },
+        {
+          "number": "4.6",
+          "title": "Acesso seguro com get()",
+          "lines": [
+            "dic.get(chave)",
+            "O que faz: Busca uma chave sem gerar KeyError quando ela não existe.",
+            "Exemplo:",
+            "nome = carrinho.get(\"Feijão\")",
+            "Resultado: nome recebe None se Feijão não existir.",
+            "Como funciona: get() devolve o valor quando a chave existe e None por padrão quando não existe.",
+            "Se não usar: dic[\"Feijão\"] poderia gerar KeyError.",
+            "Relacionado: get(chave, padrao) permite escolher o valor usado quando a chave não existe; use chave in dic se precisar distinguir ausência de uma chave cujo valor é None."
+          ],
+          "aliases": [
+            "buscar com segurança",
+            "get",
+            "chave existe"
+          ],
+          "id": "secao-4-6"
+        },
+        {
+          "number": "4.7",
+          "title": "Dicionário dentro de dicionário",
+          "lines": [
+            "pessoa = {\n    \"nome\": \"Yan\",\n    \"idade\": 18,\n    \"endereco\": {\n        \"cidade\": \"Ribeirão Preto\",\n        \"estado\": \"SP\"\n    }\n}",
+            "O que faz: Permite organizar informações relacionadas em níveis. Um valor pode ser outro dicionário.",
+            "Exemplo:\npessoa = {\n    \"nome\": \"Yan\",\n    \"endereco\": {\n        \"cidade\": \"Ribeirão Preto\",\n        \"estado\": \"SP\"\n    }\n}",
+            "Resultado: pessoa[\"endereco\"] é outro dicionário, com \"cidade\" e \"estado\".",
+            "Como funciona: A chave externa aponta para um segundo dicionário. Você continua usando chaves para entrar nos níveis internos.",
+            "Se não usar: Você teria de guardar as informações relacionadas em estruturas separadas.",
+            "Relacionado: escolha uma chave por nível para acessar estruturas aninhadas; uma lista costuma ser melhor quando a ordem dos registros importa, e um dicionário quando o acesso por nome importa."
+          ],
+          "aliases": [
+            "dicionário aninhado",
+            "dicionário dentro de dicionário"
+          ],
+          "id": "secao-4-7"
+        },
+        {
+          "number": "4.8",
+          "title": "Acessar valores em dicionários aninhados",
+          "lines": [
+            "pessoa[\"endereco\"][\"cidade\"]",
+            "O que faz: Permite acessar um valor dentro de um dicionário que está dentro de outro.",
+            "Exemplo:\nprint(pessoa[\"endereco\"][\"cidade\"])",
+            "Resultado: Ribeirão Preto.",
+            "Como funciona: Primeiro pessoa[\"endereco\"] encontra o dicionário de endereço. Depois [\"cidade\"] pega o valor dessa chave.",
+            "Se não usar: Você não teria essa forma direta de chegar ao valor interno.",
+            "Atenção: se o dicionário intermediário não existir, o acesso encadeado também falha; confira cada nível ou use get() com valores padrão."
+          ],
+          "aliases": [],
+          "id": "secao-4-8"
+        },
+        {
+          "number": "4.9",
+          "title": "Lista dentro de dicionário e dicionário dentro de lista",
+          "lines": [
+            "dados = {\n    \"nome\": \"Yan\",\n    \"compras\": [\n        [\"Pão\", 2.50],\n        [\"Leite\", 3.19]\n    ]\n}\n\npessoas = [\n    {\"nome\": \"Yan\", \"idade\": 18},\n    {\"nome\": \"João\", \"idade\": 20}\n]",
+            "O que faz: Estruturas podem ser combinadas: um dicionário pode guardar uma lista, e uma lista pode guardar dicionários.",
+            "Exemplo:\ndados[\"compras\"]  # lista\npessoas[0][\"nome\"]  # valor dentro do primeiro dicionário",
+            "Resultado: compras é uma lista dentro do dicionário; cada item de pessoas é um dicionário.",
+            "Como funciona: Use índices para listas e chaves para dicionários, seguindo cada nível da estrutura.",
+            "Se não usar: Você ficaria limitado a estruturas mais simples.",
+            "Relacionado: lista de dicionários funciona bem como coleção de registros nomeados; dicionário de listas agrupa vários valores sob uma mesma chave, como compras ou notas."
+          ],
+          "aliases": [],
+          "id": "secao-4-9"
+        }
+      ],
+      "content": [],
+      "aliases": [
+        "dicionário",
+        "dicionario",
+        "dicionários",
+        "dicionarios",
+        "dict",
+        "chave e valor",
+        "mexer com dicionário",
+        "mexer com dicionario"
+      ],
+      "id": "capitulo-4"
+    },
+    {
+      "number": 5,
+      "title": "Formatação de números e textos",
+      "intro": [
+        "F-strings deixam os textos mais claros e permitem controlar a aparência dos números."
+      ],
+      "sections": [
+        {
+          "number": "5.1",
+          "title": "Colocar variável dentro do texto",
+          "lines": [
+            "f\"{variavel}\"",
+            "O que faz: Insere o valor de uma variável dentro de uma string.",
+            "Exemplo:",
+            "nome = \"Yan\"",
+            "print(f\"Olá, {nome}!\")",
+            "Resultado: Olá, Yan!",
+            "Como funciona: O f antes das aspas ativa a interpolação de expressões dentro de {}.",
+            "Se não usar: Você teria de concatenar ou converter valores de outra forma.",
+            "Relacionado: f-strings aceitam expressões entre chaves, como {preco * quantidade}; str(valor) também converte um valor para texto, mas não oferece a mesma formatação dentro da frase."
+          ],
+          "aliases": [],
+          "id": "secao-5-1"
+        },
+        {
+          "number": "5.2",
+          "title": "Duas casas decimais",
+          "lines": [
+            "f\"{valor:.2f}\"",
+            "O que faz: Mostra exatamente duas casas decimais.",
+            "Exemplo:",
+            "valor = 10",
+            "print(f\"{valor:.2f}\")",
+            "Resultado: 10.00.",
+            "Como funciona: :.2f significa número decimal com duas casas.",
+            "Se não usar: print(valor) mostraria 10, sem a formatação visual de duas casas.",
+            "Relacionado: :.2f controla como o número aparece, mas não altera a variável original; round(valor, 2) calcula outro número arredondado para uso posterior."
+          ],
+          "aliases": [],
+          "id": "secao-5-2"
+        },
+        {
+          "number": "5.3",
+          "title": "Porcentagem",
+          "lines": [
+            "f\"{taxa:.2%}\"",
+            "O que faz: Mostra o valor como porcentagem com duas casas.",
+            "Exemplo:",
+            "taxa = 0.125",
+            "print(f\"{taxa:.2%}\")",
+            "Resultado: 12.50%.",
+            "Como funciona: O Python converte a escala para porcentagem e aplica duas casas decimais.",
+            "Se não usar: O valor seria exibido como 0.125.",
+            "Relacionado: a formatação percentual multiplica a fração por 100 para exibição; 0.125 aparece como 12.50%, então use 0.125 como taxa, não 12.5."
+          ],
+          "aliases": [],
+          "id": "secao-5-3"
+        },
+        {
+          "number": "5.4",
+          "title": "Alinhar texto",
+          "lines": [
+            "f\"{nome:^20}\"",
+            "O que faz: Centraliza o texto dentro de uma largura definida.",
+            "Exemplo:",
+            "nome = \"Yan\"",
+            "print(f\"{nome:^20}\")",
+            "Resultado: Yan fica centralizado em um espaço de 20 caracteres.",
+            "Como funciona: ^ significa centralizar; 20 define a largura.",
+            "Se não usar: O texto seria exibido sem esse alinhamento.",
+            "Relacionado: < alinha à esquerda, > à direita e ^ centraliza; a largura é mínima e não corta textos maiores. Métodos ljust(), rjust() e center() fazem alinhamento de strings."
+          ],
+          "aliases": [],
+          "id": "secao-5-4"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-5"
+    },
+    {
+      "number": 6,
+      "title": "Condições",
+      "intro": [
+        "Condições permitem ao programa escolher caminhos diferentes com base em valores verdadeiros ou falsos."
+      ],
+      "sections": [
+        {
+          "number": "6.1",
+          "title": "if",
+          "lines": [
+            "if condição:",
+            "O que faz: Executa um bloco quando a condição é verdadeira.",
+            "Exemplo:",
+            "idade = 18",
+            "if idade >= 18:",
+            "print(\"Maior de idade\")",
+            "Resultado: Maior de idade.",
+            "Como funciona: O Python testa a expressão e executa as linhas indentadas quando ela resulta em True.",
+            "Se não usar: Esse caminho específico não seria executado.",
+            "Relacionado: uma condição pode combinar comparações, presença com in ou chamadas como isinstance(); o bloco precisa de dois-pontos e recuo."
+          ],
+          "aliases": [],
+          "id": "secao-6-1"
+        },
+        {
+          "number": "6.2",
+          "title": "elif",
+          "lines": [
+            "elif condição:",
+            "O que faz: Testa outra condição quando a anterior falha.",
+            "Exemplo:",
+            "idade = 15",
+            "if idade >= 18:",
+            "print(\"Adulto\")",
+            "elif idade >= 12:",
+            "print(\"Adolescente\")",
+            "Resultado: Adolescente.",
+            "Como funciona: O elif só é avaliado quando as condições anteriores da cadeia não foram atendidas.",
+            "Se não usar: Você teria de criar outro if separado.",
+            "Relacionado: elif faz parte da mesma cadeia e só o primeiro ramo verdadeiro é executado; use vários if independentes quando mais de uma ação puder acontecer."
+          ],
+          "aliases": [],
+          "id": "secao-6-2"
+        },
+        {
+          "number": "6.3",
+          "title": "else",
+          "lines": [
+            "else:",
+            "O que faz: Executa quando nenhuma condição anterior da cadeia foi atendida.",
+            "Exemplo:",
+            "idade = 8",
+            "if idade >= 18:",
+            "print(\"Adulto\")",
+            "else:",
+            "print(\"Menor\")",
+            "Resultado: Menor.",
+            "Como funciona: else não tem condição própria; ele representa o caminho restante.",
+            "Se não usar: Nada do bloco else seria executado.",
+            "Relacionado: else não recebe uma condição própria; ele cobre os casos que não foram atendidos por if ou elif anteriores."
+          ],
+          "aliases": [],
+          "id": "secao-6-3"
+        },
+        {
+          "number": "6.4",
+          "title": "and, or e not",
+          "lines": [
+            "condicao1 and condicao2",
+            "O que faz: Combina condições lógicas.",
+            "Exemplo:",
+            "idade = 25",
+            "if idade >= 18 and idade <= 60:",
+            "print(\"Faixa\")",
+            "Resultado: Faixa.",
+            "Como funciona: and exige que as duas condições sejam verdadeiras; or aceita pelo menos uma; not inverte o valor lógico.",
+            "Se não usar: O programa teria menos controle sobre combinações de condições.",
+            "Relacionado: and para no primeiro valor falso e or para no primeiro valor verdadeiro; isso permite proteger uma segunda verificação que depende da primeira. Use parênteses quando a mistura de and e or ficar difícil de ler."
+          ],
+          "aliases": [],
+          "id": "secao-6-4"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-6"
+    },
+    {
+      "number": 7,
+      "title": "Loops",
+      "intro": [
+        "Loops repetem código. A pergunta mental é: 'quantas vezes preciso repetir?' ou 'até quando preciso repetir?'."
+      ],
+      "sections": [
+        {
+          "number": "7.1",
+          "title": "for",
+          "lines": [
+            "for item in lista:",
+            "O que faz: Repete um bloco para cada item de uma coleção.",
+            "Exemplo:",
+            "for fruta in [\"Maçã\", \"Banana\"]:",
+            "print(fruta)",
+            "Resultado: Maçã e Banana, uma por vez.",
+            "Como funciona: A variável fruta recebe cada item em sequência.",
+            "Se não usar: Você precisaria repetir manualmente o código para cada item.",
+            "Relacionado: for percorre os itens disponíveis; use while quando a repetição depende de uma condição que pode mudar durante o programa."
+          ],
+          "aliases": [],
+          "id": "secao-7-1"
+        },
+        {
+          "number": "7.2",
+          "title": "range()",
+          "lines": [
+            "range(inicio, fim)",
+            "O que faz: Gera uma sequência de números útil para repetição.",
+            "Exemplo:",
+            "for i in range(5):",
+            "print(i)",
+            "Resultado: 0, 1, 2, 3, 4.",
+            "Como funciona: O fim 5 não entra na sequência.",
+            "Se não usar: Seria mais trabalhoso repetir usando números escritos manualmente.",
+            "Atenção: o valor final de range() não entra na sequência; range(1, 6) gera 1 até 5, e range(0, 10, 2) pula de dois em dois."
+          ],
+          "aliases": [],
+          "id": "secao-7-2"
+        },
+        {
+          "number": "7.3",
+          "title": "while",
+          "lines": [
+            "while condição:",
+            "O que faz: Repete enquanto a condição for verdadeira.",
+            "Exemplo:",
+            "contador = 0",
+            "while contador < 3:",
+            "print(contador)",
+            "contador += 1",
+            "Resultado: 0, 1 e 2.",
+            "Como funciona: A condição é testada antes de cada repetição.",
+            "Se não usar: A repetição com condição não aconteceria dessa forma.",
+            "Atenção: atualize dentro do while a variável usada na condição; se ela nunca mudar, o loop pode continuar para sempre."
+          ],
+          "aliases": [],
+          "id": "secao-7-3"
+        },
+        {
+          "number": "7.4",
+          "title": "break e continue",
+          "lines": [
+            "break / continue",
+            "O que faz: break encerra o loop; continue pula a iteração atual.",
+            "Exemplo:",
+            "for numero in range(5):",
+            "if numero == 2:",
+            "continue",
+            "if numero == 4:",
+            "break",
+            "print(numero)",
+            "Resultado: 0, 1 e 3.",
+            "Como funciona: continue volta para a próxima repetição; break sai completamente do loop.",
+            "Se não usar: O loop seguiria sem essas interrupções.",
+            "Relacionado: break encerra o loop atual; continue pula para a próxima repetição. return encerra a função inteira, mesmo quando ela contém um loop."
+          ],
+          "aliases": [],
+          "id": "secao-7-4"
+        },
+        {
+          "number": "7.5",
+          "title": "enumerate()",
+          "lines": [
+            "enumerate(lista)",
+            "O que faz: Entrega índice e valor juntos.",
+            "Exemplo:",
+            "for i, item in enumerate([\"A\", \"B\"]):",
+            "print(i, item)",
+            "Resultado: 0 A e 1 B.",
+            "Como funciona: enumerate cria pares de posição e elemento.",
+            "Se não usar: Você precisaria controlar o índice manualmente.",
+            "Relacionado: enumerate() é mais claro que range(len(lista)) quando você precisa do índice e do item ao mesmo tempo; start=1 serve para numeração exibida."
+          ],
+          "aliases": [],
+          "id": "secao-7-5"
+        },
+        {
+          "number": "7.6",
+          "title": "zip()",
+          "lines": [
+            "zip(lista1, lista2)",
+            "O que faz: Percorre duas coleções ao mesmo tempo.",
+            "Exemplo:",
+            "for nome, idade in zip(nomes, idades):",
+            "print(nome, idade)",
+            "Resultado: Cada nome aparece junto da idade correspondente.",
+            "Como funciona: zip junta os elementos pela mesma posição.",
+            "Se não usar: Você precisaria acessar as duas listas usando índices.",
+            "Atenção: zip() termina quando a coleção mais curta acaba; se precisar confirmar comprimentos iguais, verifique os dados antes de percorrer."
+          ],
+          "aliases": [],
+          "id": "secao-7-6"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-7"
+    },
+    {
+      "number": 8,
+      "title": "Funções",
+      "intro": [
+        "Função é um bloco reutilizável. Ela ajuda a evitar código repetido e deixa o programa dividido em partes menores."
+      ],
+      "sections": [
+        {
+          "number": "8.1",
+          "title": "Criar uma função",
+          "lines": [
+            "def nome():",
+            "O que faz: Cria uma função.",
+            "Exemplo:",
+            "def saudacao():",
+            "print(\"Olá!\")",
+            "Resultado: A função existe, mas não é executada só por ser definida.",
+            "Como funciona: def cria o bloco; o corpo indentado pertence à função.",
+            "Se não usar: O bloco ficaria apenas como código solto ou teria de ser repetido.",
+            "Relacionado: def registra a função, mas não roda seu corpo; para executar, chame o nome com parênteses depois da definição."
+          ],
+          "aliases": [],
+          "id": "secao-8-1"
+        },
+        {
+          "number": "8.2",
+          "title": "Chamar uma função",
+          "lines": [
+            "nome()",
+            "O que faz: Executa a função definida.",
+            "Exemplo:",
+            "def saudacao():",
+            "print(\"Olá!\")",
+            "saudacao()",
+            "Resultado: Olá!",
+            "Como funciona: Os parênteses fazem a chamada da função.",
+            "Se não usar: A função continuaria definida, mas seu corpo não seria executado naquele ponto.",
+            "Relacionado: os valores entre parênteses na chamada são argumentos; eles são associados aos parâmetros declarados depois de def."
+          ],
+          "aliases": [],
+          "id": "secao-8-2"
+        },
+        {
+          "number": "8.3",
+          "title": "Parâmetros",
+          "lines": [
+            "def somar(a, b):",
+            "O que faz: Permite receber dados na função.",
+            "Exemplo:",
+            "def somar(a, b):",
+            "return a + b",
+            "resultado = somar(2, 3)",
+            "Resultado: resultado vale 5.",
+            "Como funciona: a e b recebem os argumentos 2 e 3 quando a função é chamada.",
+            "Se não usar: Você teria uma função menos reutilizável para valores diferentes.",
+            "Relacionado: argumentos podem ser passados por posição ou pelo nome do parâmetro; valores padrão permitem omitir argumentos opcionais."
+          ],
+          "aliases": [],
+          "id": "secao-8-3"
+        },
+        {
+          "number": "8.4",
+          "title": "return",
+          "lines": [
+            "return valor",
+            "O que faz: Devolve um resultado para quem chamou a função.",
+            "Exemplo:",
+            "def dobrar(numero):",
+            "return numero * 2",
+            "resultado = dobrar(4)",
+            "Resultado: resultado vale 8.",
+            "Como funciona: return encerra aquela execução da função e entrega o valor ao chamador.",
+            "Se não usar: A função não devolveria esse resultado para ser usado em outra expressão.",
+            "Atenção: print() mostra algo na tela, mas não entrega esse valor ao código que chamou a função; use return quando outro cálculo precisar do resultado."
+          ],
+          "aliases": [],
+          "id": "secao-8-4"
+        },
+        {
+          "number": "8.7",
+          "title": "Lista como parâmetro e resultado",
+          "lines": [
+            "def somar_lista(numeros):",
+            "total = 0",
+            "for numero in numeros:",
+            "total += numero",
+            "return total",
+            "valores = [10, 20, 30, 40]",
+            "resultado = somar_lista(valores)",
+            "print(resultado)",
+            "Resultado: 100.",
+            "Como funciona: valores é passado para o parâmetro numeros; o for percorre os itens; total acumula os valores; return devolve o resultado para resultado.",
+            "Ideia principal: uma função pode receber uma lista, percorrê-la com for, fazer algum processamento e devolver um resultado.",
+            "Se não usar: Você precisaria colocar esse processamento diretamente no programa ou repetir o mesmo código para cada lista.",
+            "Relacionado: sum(numeros) já soma os valores de uma lista; a versão com for é útil quando você também precisa validar, filtrar ou transformar cada número."
+          ],
+          "aliases": [],
+          "id": "secao-8-7"
+        },
+        {
+          "number": "8.6",
+          "title": "for dentro da função",
+          "lines": [
+            "def mostrar_lista(lista):",
+            "for item in lista:",
+            "print(item)",
+            "O que faz: Permite colocar dentro da função a lógica que percorre os itens recebidos.",
+            "Como funciona: o for é executado quando a função é chamada. A cada repetição, item recebe um elemento da lista.",
+            "Exemplo:",
+            "produtos = [\"Arroz\", \"Feijão\", \"Leite\"]",
+            "mostrar_lista(produtos)",
+            "Resultado: Arroz, Feijão e Leite são mostrados em sequência.",
+            "Se não usar: A função poderia receber a lista, mas não teria esse loop para processar cada item individualmente.",
+            "Relacionado: a função pode receber a lista inteira e percorrê-la internamente; use return para devolver um resultado e print() somente quando a intenção for exibir."
+          ],
+          "aliases": [],
+          "id": "secao-8-6"
+        },
+        {
+          "number": "8.5",
+          "title": "Funções com listas",
+          "lines": [
+            "lista",
+            "Exemplo:",
+            "def mostrar_lista(lista):",
+            "for item in lista:",
+            "print(item)",
+            "nomes = [\"Yan\", \"João\", \"Maria\"]",
+            "mostrar_lista(nomes)",
+            "Resultado: a função percorre a lista e mostra cada nome, um por vez.",
+            "Como funciona: nomes é a lista criada fora da função; quando mostramos mostrar_lista(nomes), o parâmetro lista passa a receber essa lista durante aquela execução.",
+            "Se não usar: Você teria de colocar o código do for fora da função ou repetir a lógica sempre que quisesse percorrer outra lista.",
+            "Relacionado: listas são mutáveis, então uma função que chama append() altera a lista original recebida; use lista.copy() se quiser trabalhar em uma cópia.",
+            "Atenção: copy() cria uma cópia superficial; se a lista contém outras listas, essas listas internas ainda são compartilhadas."
+          ],
+          "aliases": [],
+          "id": "secao-8-5"
+        }
+      ],
+      "content": [],
+      "aliases": [
+        "função",
+        "funcoes",
+        "funções",
+        "def",
+        "return",
+        "parâmetro",
+        "parametros"
+      ],
+      "id": "capitulo-8"
+    },
+    {
+      "number": 9,
+      "title": "Operadores importantes",
+      "intro": [
+        "Operadores são símbolos ou palavras que combinam, transformam ou comparam valores."
+      ],
+      "sections": [
+        {
+          "number": "9.1",
+          "title": "Matemática",
+          "lines": [
+            "a + b   a - b   a * b   a / b",
+            "O que faz: Realiza operações matemáticas básicas.",
+            "Exemplo:",
+            "a = 10",
+            "b = 3",
+            "print(a + b)",
+            "print(a * b)",
+            "Resultado: 13 e depois 30.",
+            "Como funciona: + soma, - subtrai, * multiplica e / divide.",
+            "Se não usar: Você teria de realizar o cálculo fora dessas expressões.",
+            "Relacionado: / produz divisão com casas decimais; // descarta a parte fracionária arredondando para baixo, e % devolve o resto da divisão."
+          ],
+          "aliases": [],
+          "id": "secao-9-1"
+        },
+        {
+          "number": "9.2",
+          "title": "Divisão inteira, resto e potência",
+          "lines": [
+            "a // b   a % b   a ** b",
+            "O que faz: Faz divisão inteira, resto da divisão e potência.",
+            "Exemplo:",
+            "a = 10",
+            "b = 3",
+            "print(a // b)",
+            "print(a % b)",
+            "print(a ** 2)",
+            "Resultado: 3, 1 e 100.",
+            "Como funciona: // descarta a parte decimal; % pega o resto; ** calcula potência.",
+            "Se não usar: Esses cálculos específicos não seriam feitos por esses operadores.",
+            "Relacionado: numero % 2 == 0 verifica se um inteiro é par; numero ** 2 calcula seu quadrado, enquanto numero * 2 apenas dobra o valor."
+          ],
+          "aliases": [],
+          "id": "secao-9-2"
+        },
+        {
+          "number": "9.3",
+          "title": "Comparações",
+          "lines": [
+            "==   !=   >   <   >=   <=",
+            "O que faz: Compara valores e produz True ou False.",
+            "Exemplo:",
+            "idade = 18",
+            "print(idade == 18)",
+            "print(idade >= 18)",
+            "Resultado: True e True.",
+            "Como funciona: O Python avalia a relação entre os valores.",
+            "Se não usar: Você perderia uma forma direta de testar relações entre valores.",
+            "Atenção: == compara se os valores são iguais; is verifica se são o mesmo objeto. Para testar ausência, use valor is None, não valor == None."
+          ],
+          "aliases": [],
+          "id": "secao-9-3"
+        },
+        {
+          "number": "9.4",
+          "title": "Operadores lógicos",
+          "lines": [
+            "and   or   not",
+            "O que faz: Combina ou inverte expressões booleanas.",
+            "Exemplo:",
+            "tem_idade = True",
+            "tem_ingresso = False",
+            "print(tem_idade and tem_ingresso)",
+            "Resultado: False.",
+            "Como funciona: and exige True nos dois lados; or exige pelo menos um; not inverte.",
+            "Se não usar: A lógica combinada teria de ser escrita de outra forma.",
+            "Relacionado: and, or e not trabalham com valores verdadeiros e falsos; combine comparações com parênteses para deixar a intenção explícita."
+          ],
+          "aliases": [],
+          "id": "secao-9-4"
+        },
+        {
+          "number": "9.5",
+          "title": "in e not in",
+          "lines": [
+            "valor in colecao",
+            "O que faz: Verifica se um valor está em uma coleção.",
+            "Exemplo:",
+            "frutas = [\"Maçã\", \"Uva\"]",
+            "print(\"Uva\" in frutas)",
+            "Resultado: True.",
+            "Como funciona: O Python procura o valor dentro da coleção.",
+            "Se não usar: Você precisaria percorrer a coleção manualmente.",
+            "Relacionado: em listas, in procura um item; em dicionários, verifica se a chave existe; em strings, procura um trecho de texto."
+          ],
+          "aliases": [],
+          "id": "secao-9-5"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-9"
+    },
+    {
+      "number": 10,
+      "title": "Conversão e informações úteis",
+      "intro": [
+        "Conversões mudam o tipo de um valor. Saber o tipo evita muitos erros, especialmente quando os dados vieram de input()."
+      ],
+      "sections": [
+        {
+          "number": "10.1",
+          "title": "Descobrir o tipo",
+          "lines": [
+            "type(valor)",
+            "O que faz: Mostra o tipo de um valor.",
+            "Exemplo:",
+            "idade = 18",
+            "print(type(idade))",
+            "Resultado: <class 'int'>.",
+            "Como funciona: type() devolve o objeto de tipo associado ao valor.",
+            "Se não usar: Você teria menos informação para investigar o tipo de um dado.",
+            "Relacionado: type(valor) mostra o tipo exato; isinstance(valor, tipo) também reconhece instâncias de subclasses e costuma ser melhor para validação."
+          ],
+          "aliases": [],
+          "id": "secao-10-1"
+        },
+        {
+          "number": "10.2",
+          "title": "int(), float() e str()",
+          "lines": [
+            "int(valor)   float(valor)   str(valor)",
+            "O que faz: Converte valores entre os tipos mais comuns.",
+            "Exemplo:",
+            "a = int(\"10\")",
+            "b = float(\"2.5\")",
+            "c = str(30)",
+            "Resultado: a é 10, b é 2.5 e c é texto \"30\".",
+            "Como funciona: Cada função tenta criar um novo valor no tipo solicitado.",
+            "Se não usar: Você poderia acabar tentando somar texto com número, por exemplo.",
+            "Atenção: int() converte texto de inteiro e descarta a parte decimal de um float em vez de arredondar; float() aceita casas decimais e str() transforma o valor em texto."
+          ],
+          "aliases": [],
+          "id": "secao-10-2"
+        },
+        {
+          "number": "10.3",
+          "title": "list(), tuple() e set()",
+          "lines": [
+            "list(valor)   tuple(valor)   set(valor)",
+            "O que faz: Converte dados para coleções diferentes.",
+            "Exemplo:",
+            "print(list(\"abc\"))",
+            "print(tuple([1, 2]))",
+            "print(set([1, 1, 2]))",
+            "Resultado: [\"a\", \"b\", \"c\"], (1, 2) e {1, 2}.",
+            "Como funciona: list cria lista, tuple cria tupla e set cria conjunto, removendo duplicados.",
+            "Se não usar: Você não teria essas coleções em outro formato a partir desses dados.",
+            "Relacionado: list é mutável, tuple não pode ter seus itens trocados e set mantém elementos únicos; use set para eliminar duplicados, sem depender de ordem para exibição."
+          ],
+          "aliases": [],
+          "id": "secao-10-3"
+        },
+        {
+          "number": "10.4",
+          "title": "None",
+          "lines": [
+            "valor = None",
+            "O que faz: Representa ausência de um valor útil.",
+            "Exemplo:",
+            "resultado = None",
+            "print(resultado)",
+            "Resultado: None.",
+            "Como funciona: None é um valor especial usado quando ainda não há um resultado ou dado.",
+            "Se não usar: Você poderia usar um valor comum e confundir 'sem valor' com um dado real.",
+            "Relacionado: None representa ausência de valor e é testado com is None; diferencie isso de 0, texto vazio e lista vazia, que são valores diferentes."
+          ],
+          "aliases": [],
+          "id": "secao-10-4"
+        },
+        {
+          "number": "10.5",
+          "title": "isinstance()",
+          "lines": [
+            "isinstance(valor, tipo)",
+            "O que faz: Verifica se um valor pertence a um tipo.",
+            "Exemplo:",
+            "idade = 18",
+            "print(isinstance(idade, int))",
+            "Resultado: True.",
+            "Como funciona: isinstance compara o valor com o tipo informado.",
+            "Se não usar: Você poderia tentar uma operação sem confirmar o tipo primeiro.",
+            "Relacionado: isinstance(valor, (int, float)) aceita qualquer um dos tipos indicados; type(valor) is int exige exatamente o tipo int.",
+            "Atenção: bool é uma subclasse de int, então isinstance(True, int) resulta em True."
+          ],
+          "aliases": [],
+          "id": "secao-10-5"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-10"
+    },
+    {
+      "number": 11,
+      "title": "Atalhos mentais",
+      "intro": [
+        "Use este capítulo quando você já conhece a ideia e só precisa lembrar a sintaxe. Cada linha separa código e explicação para a cor continuar seguindo a lógica do VS Code."
+      ],
+      "sections": [
+        {
+          "number": "11.1",
+          "title": "Strings",
+          "lines": [
+            "texto.upper()    converte para maiúsculas.",
+            "texto.lower()    converte para minúsculas.",
+            "texto.strip()    remove espaços nas pontas.",
+            "texto.replace(\"a\", \"b\")    troca uma parte do texto por outra.",
+            "texto.split(\",\")    quebra o texto em uma lista.",
+            "\",\".join(lista)    junta uma lista em um único texto.",
+            "\"Python\".startswith(\"Py\")    verifica como o texto começa.",
+            "\"dados.txt\".endswith(\".txt\")    verifica como o texto termina.",
+            "\"casa\".find(\"a\")    retorna a posição da primeira ocorrência.",
+            "\"a\" in \"casa\"    verifica se o trecho existe no texto.",
+            "Relacionado: upper() e lower() mudam maiúsculas e minúsculas; strip() limpa as pontas e replace() troca trechos. Strings não mudam no lugar: cada método devolve outro texto."
+          ],
+          "aliases": [],
+          "id": "secao-11-1"
+        },
+        {
+          "number": "11.2",
+          "title": "Listas",
+          "lines": [
+            "lista.append(valor)    adiciona no final.",
+            "lista.insert(0, valor)    insere na posição indicada.",
+            "lista.extend(outra_lista)    junta itens de outra lista.",
+            "lista.pop()    remove e devolve o último item.",
+            "lista.pop(0)    remove e devolve o item da posição 0.",
+            "lista.remove(valor)    remove a primeira ocorrência.",
+            "lista.clear()    esvazia a lista.",
+            "lista.sort()    ordena a própria lista.",
+            "sorted(lista)    cria uma nova lista ordenada.",
+            "lista.reverse()    inverte a própria lista.",
+            "lista.count(valor)    conta ocorrências.",
+            "lista.index(valor)    encontra a primeira posição.",
+            "lista.copy()    cria uma cópia superficial.",
+            "Relacionado: append() acrescenta um item; extend() percorre outra coleção e acrescenta cada item. insert() inclui um item em uma posição escolhida."
+          ],
+          "aliases": [],
+          "id": "secao-11-2"
+        },
+        {
+          "number": "11.3",
+          "title": "Dicionários",
+          "lines": [
+            "dic.get(chave)    busca sem KeyError quando a chave não existe.",
+            "dic.get(chave, valor_padrao)    usa um valor padrão.",
+            "dic.pop(chave)    remove a chave e devolve o valor.",
+            "dic.update(outro_dic)    adiciona ou atualiza várias chaves.",
+            "dic.clear()    remove todos os pares.",
+            "dic.setdefault(chave, valor)    cria a chave somente se necessário.",
+            "chave in dic    verifica se a chave existe.",
+            "len(dic)    conta quantas chaves existem.",
+            "Relacionado: get() consulta sem KeyError, items() percorre chave e valor, e pop() remove uma chave devolvendo o valor que estava nela."
+          ],
+          "aliases": [],
+          "id": "secao-11-3"
+        },
+        {
+          "number": "11.4",
+          "title": "Loops",
+          "lines": [
+            "for i in range(5):    repete para 0, 1, 2, 3 e 4.",
+            "for item in lista:    percorre cada item.",
+            "for i, item in enumerate(lista):    pega posição e item juntos.",
+            "for a, b in zip(lista1, lista2):    percorre duas listas juntas.",
+            "while condicao:    repete enquanto a condição for verdadeira.",
+            "break    encerra o loop.",
+            "continue    pula a iteração atual.",
+            "pass    não faz nada; serve como espaço reservado.",
+            "Relacionado: use enumerate() quando precisar de posição e item, zip() para percorrer coleções em paralelo e range() para repetir uma quantidade definida de vezes."
+          ],
+          "aliases": [],
+          "id": "secao-11-4"
+        },
+        {
+          "number": "11.5",
+          "title": "Matemática",
+          "lines": [
+            "a + b    soma.",
+            "a - b    subtração.",
+            "a * b    multiplicação.",
+            "a / b    divisão decimal.",
+            "a // b    divisão inteira.",
+            "a % b    resto da divisão.",
+            "a ** b    potência.",
+            "round(valor, 2)    arredonda para 2 casas.",
+            "abs(numero)    retorna o valor absoluto.",
+            "min(lista)    menor valor.",
+            "max(lista)    maior valor.",
+            "sum(lista)    soma os valores.",
+            "Relacionado: // e % são úteis juntos para divisão inteira e resto; teste paridade com numero % 2, e potência com **."
+          ],
+          "aliases": [],
+          "id": "secao-11-5"
+        },
+        {
+          "number": "11.6",
+          "title": "Comparação e lógica",
+          "lines": [
+            "a == b    igualdade.",
+            "a != b    diferença.",
+            "a > b    maior que.",
+            "a < b    menor que.",
+            "a >= b    maior ou igual.",
+            "a <= b    menor ou igual.",
+            "a is b    verifica identidade do objeto.",
+            "a is not b    verifica identidade diferente.",
+            "condicao1 and condicao2    as duas precisam ser verdadeiras.",
+            "condicao1 or condicao2    pelo menos uma precisa ser verdadeira.",
+            "not condicao    inverte o valor lógico.",
+            "Atenção: == testa igualdade de valor; is testa identidade. Em comparações de tipos simples, prefira == e reserve is para casos como None."
+          ],
+          "aliases": [],
+          "id": "secao-11-6"
+        },
+        {
+          "number": "11.7",
+          "title": "Tratamento de erros",
+          "lines": [
+            "try:    coloca código que pode gerar erro.",
+            "except:    define o que fazer quando ocorre um erro.",
+            "except ValueError:    captura esse tipo específico de erro.",
+            "finally:    executa no final, com ou sem erro.",
+            "raise ValueError()    cria um erro de propósito.",
+            "Relacionado: trate a exceção esperada, como ValueError na conversão com int(); except Exception genérico pode esconder erros que você ainda não previu."
+          ],
+          "aliases": [],
+          "id": "secao-11-7"
+        },
+        {
+          "number": "11.8",
+          "title": "Arquivos",
+          "lines": [
+            "open(\"arquivo.txt\", \"r\")    abre para leitura.",
+            "open(\"arquivo.txt\", \"w\")    abre para escrita e pode substituir o conteúdo.",
+            "open(\"arquivo.txt\", \"a\")    abre para adicionar no final.",
+            "with open(\"arquivo.txt\", \"r\") as arquivo:    abre e fecha automaticamente.",
+            "arquivo.read()    lê todo o conteúdo.",
+            "arquivo.readline()    lê uma linha.",
+            "arquivo.readlines()    lê as linhas e devolve uma lista.",
+            "arquivo.write(\"texto\")    escreve no arquivo.",
+            "Relacionado: combine with open(..., encoding=\"utf-8\") para fechar o arquivo automaticamente e interpretar acentos de forma explícita."
+          ],
+          "aliases": [],
+          "id": "secao-11-8"
+        },
+        {
+          "number": "11.9",
+          "title": "Compreensão de listas",
+          "lines": [
+            "[x * 2 for x in numeros]    cria uma lista dobrando cada número.",
+            "[x for x in numeros if x > 10]    filtra a lista por uma condição.",
+            "[len(nome) for nome in nomes]    cria uma lista com o tamanho de cada nome.",
+            "O que faz: a expressão [int(item) if item.isdigit() else item for item in lista] percorre uma lista e transforma em inteiro apenas o texto formado por dígitos.",
+            "Como funciona: item é uma variável temporária que recebe cada elemento; lista é a coleção percorrida; int(item) é o valor colocado na nova lista quando a condição dá True.",
+            "Observação: item.isdigit() é a condição; else item diz para manter o valor original quando a condição dá False.",
+            "Exemplo:",
+            "lista = [\"10\", \"maçã\", \"25\", \"abc\"]",
+            "convertida = [int(item) if item.isdigit() else item for item in lista]",
+            "print(convertida)",
+            "Resultado: [10, \"maçã\", 25, \"abc\"]",
+            "Observação: a lista original não é modificada; convertida é uma lista nova, com números inteiros onde a conversão foi possível.",
+            "Observação: o if/else antes do for escolhe o valor de cada item e mantém todos os itens; um if no fim do for funciona como filtro e descarta os que não passam.",
+            "Exemplo:",
+            "somente_numeros = [int(item) for item in lista if item.isdigit()]",
+            "Resultado: [10, 25]",
+            "Exemplo:",
+            "listas = [[\"10\", \"maçã\"], [\"-3\", \"2.5\", \"12\"]]",
+            "convertidas = [",
+            "    [int(item) if item.isdigit() else item for item in sublista]",
+            "    for sublista in listas",
+            "]",
+            "print(convertidas)",
+            "Resultado: [[10, \"maçã\"], [\"-3\", \"2.5\", 12]]",
+            "Como funciona: o for de fora escolhe cada sublista; o for de dentro percorre seus itens; cada item convertido entra na nova sublista.",
+            "Atenção: isdigit() só reconhece texto não vazio formado por dígitos; por isso \"-3\" e \"2.5\" não passam no teste.",
+            "Atenção: alguns caracteres Unicode, como o sobrescrito ², passam em isdigit(), mas não podem ser convertidos por int().",
+            "Atenção: para aceitar inteiros negativos e não depender de isdigit(), tente int() e trate ValueError:",
+            "Exemplo:",
+            "listas = [[\"10\", \"maçã\"], [\"-3\", \"2.5\", \"12\"]]",
+            "def converter_para_int(item):",
+            "    try:",
+            "        return int(item)",
+            "    except (ValueError, TypeError):",
+            "        return item",
+            "convertidas = [[converter_para_int(item) for item in sublista] for sublista in listas]",
+            "print(convertidas)",
+            "Como funciona: try tenta converter cada item; se int() falhar com ValueError ou TypeError, except devolve o item original.",
+            "Resultado: [[10, \"maçã\"], [-3, \"2.5\", 12]]",
+            "Observação: para converter números com casas decimais, use float() e trate ValueError do mesmo jeito."
+          ],
+          "aliases": [
+            "converter item de lista para int",
+            "mudar tipo dos itens de uma lista",
+            "converter lista de strings em números",
+            "lista de listas",
+            "lista aninhada",
+            "isdigit",
+            "compreensão condicional"
+          ],
+          "id": "secao-11-9"
+        },
+        {
+          "number": "11.10",
+          "title": "F-strings",
+          "lines": [
+            "f\"Olá, {nome}\"    coloca uma variável dentro do texto.",
+            "f\"{valor:.2f}\"    mostra duas casas decimais.",
+            "f\"{taxa:.2%}\"    mostra porcentagem com duas casas.",
+            "f\"{numero:05d}\"    preenche com zeros à esquerda.",
+            "f\"{nome:^20}\"    centraliza em uma largura de 20.",
+            "Relacionado: f-strings combinam texto e valores; :.2f formata casas decimais, :% formata proporção como porcentagem, e = mostra uma expressão junto do resultado."
+          ],
+          "aliases": [],
+          "id": "secao-11-10"
+        },
+        {
+          "number": "11.11",
+          "title": "Conversões",
+          "lines": [
+            "int(\"10\")    10 como inteiro.",
+            "float(\"10.5\")    10.5 como decimal.",
+            "str(10)    \"10\" como texto.",
+            "list(\"abc\")    [\"a\", \"b\", \"c\"].",
+            "tuple([1, 2, 3])    (1, 2, 3).",
+            "set([1, 1, 2])    remove duplicados.",
+            "Atenção: int(\"abc\") e float(\"abc\") geram ValueError; valide a entrada ou trate a exceção antes de continuar o programa."
+          ],
+          "aliases": [],
+          "id": "secao-11-11"
+        },
+        {
+          "number": "11.12",
+          "title": "Tuplas e conjuntos",
+          "lines": [
+            "tupla = (1, 2, 3)    cria uma tupla.",
+            "tupla[0]    acessa um item da tupla.",
+            "conjunto = {1, 2, 3}    cria um set.",
+            "conjunto.add(4)    adiciona um elemento ao set.",
+            "conjunto.remove(2)    remove um elemento.",
+            "a | b    união de dois sets.",
+            "a & b    interseção de dois sets.",
+            "Relacionado: use tupla para um conjunto de posições fixas e set para remover duplicados ou testar rapidamente se um valor pertence ao grupo."
+          ],
+          "aliases": [],
+          "id": "secao-11-12"
+        },
+        {
+          "number": "11.13",
+          "title": "any(), all(), map() e filter()",
+          "lines": [
+            "any(condicoes)    True se pelo menos um elemento for verdadeiro.",
+            "all(condicoes)    True se todos forem verdadeiros.",
+            "list(map(funcao, lista))    aplica uma função aos itens.",
+            "list(filter(condicao, lista))    mantém somente os itens aprovados.",
+            "lambda x: x * 2    cria uma função curta.",
+            "Relacionado: any() responde se ao menos uma condição é verdadeira; all() exige que todas sejam. map() transforma cada item e filter() mantém só os itens que passam no teste.",
+            "Atenção: em Python 3, map() e filter() devolvem iteradores; use list(...) se precisar guardar ou mostrar todos os resultados de uma vez."
+          ],
+          "aliases": [],
+          "id": "secao-11-13"
+        },
+        {
+          "number": "11.14",
+          "title": "Atalhos de expressão",
+          "lines": [
+            "valor = \"ok\" if ativo else \"não\"    escolhe um valor em uma única linha.",
+            "bool(valor)    converte um valor para True ou False.",
+            "if not lista:    verifica se a lista está vazia.",
+            "if valor is None:    verifica especificamente se o valor é None.",
+            "Relacionado: valor_a if condicao else valor_b escolhe um resultado; if/else em várias linhas é mais legível quando cada ramo executa várias ações."
+          ],
+          "aliases": [],
+          "id": "secao-11-14"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-11"
+    },
+    {
+      "number": 12,
+      "title": "Atalhos rápidos — exemplos na mesma linha",
+      "intro": [
+        "Aqui o objetivo é consulta instantânea. Código fica colorido; a explicação fica cinza.",
+        "print(\"Olá\")    mostra texto na tela.",
+        "nome = input(\"Nome: \")    recebe texto.",
+        "idade = int(\"18\")    converte para inteiro.",
+        "preco = float(\"10.50\")    converte para decimal.",
+        "numero = str(10)    converte para texto.",
+        "len(\"Python\")    retorna 6.",
+        "type(10)    mostra int.",
+        "lista.append(\"Maçã\")    adiciona no final.",
+        "lista.remove(\"Maçã\")    remove a primeira ocorrência.",
+        "lista.pop()    remove e devolve o último item.",
+        "lista.sort()    ordena a lista.",
+        "lista.reverse()    inverte a ordem.",
+        "lista.index(\"A\")    pega a posição de A.",
+        "dic.get(\"nome\")    busca uma chave com segurança.",
+        "dic.items()    pega chave + valor.",
+        "dic.keys()    pega somente as chaves.",
+        "dic.values()    pega somente os valores.",
+        "\"A\" in lista    verifica se A está na lista.",
+        "\"A\" not in lista    verifica se A não está na lista.",
+        "idade == 18    igualdade.",
+        "idade != 18    diferença.",
+        "idade >= 18    maior ou igual.",
+        "idade <= 18    menor ou igual.",
+        "idade > 18    maior.",
+        "idade < 18    menor.",
+        "idade >= 18 and idade <= 60    duas condições verdadeiras.",
+        "dia == \"sábado\" or dia == \"domingo\"    uma das condições basta.",
+        "not ativo    inverte True/False.",
+        "range(5)    0, 1, 2, 3, 4.",
+        "enumerate(lista)    posição + item.",
+        "zip(nomes, idades)    junta duas listas.",
+        "f\"Olá, {nome}\"    variável dentro do texto.",
+        "f\"{valor:.2f}\"    duas casas decimais.",
+        "f\"{taxa:.2%}\"    porcentagem.",
+        "\"python\".upper()    \"PYTHON\".",
+        "\"PYTHON\".lower()    \"python\".",
+        "\"  oi  \".strip()    \"oi\".",
+        "\"a,b,c\".split(\",\")    [\"a\", \"b\", \"c\"].",
+        "\",\".join([\"a\", \"b\"])    \"a,b\".",
+        "sorted(lista, reverse=True)    ordena do maior para o menor.",
+        "sum(numeros)    soma.",
+        "min(numeros)    menor.",
+        "max(numeros)    maior.",
+        "abs(numero)    valor absoluto.",
+        "round(valor, 2)    arredonda.",
+        "random.randint(1, 10)    aleatório entre 1 e 10.",
+        "random.shuffle(lista)    embaralha a lista.",
+        "math.sqrt(25)    raiz quadrada.",
+        "isinstance(valor, int)    confere se é int.",
+        "while True:    loop que só termina quando você sair dele.",
+        "break    encerra o loop.",
+        "continue    pula a iteração.",
+        "def somar(a, b):    cria função com parâmetros.",
+        "return resultado    devolve um valor.",
+        "import random    importa um módulo."
+      ],
+      "sections": [],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-12"
+    },
+    {
+      "number": 13,
+      "title": "Erros comuns e como entender a mensagem",
+      "intro": [
+        "A mensagem de erro normalmente informa o tipo do problema e a linha em que o Python percebeu a falha. Aprender a reconhecer os nomes dos erros economiza bastante tempo."
+      ],
+      "sections": [
+        {
+          "number": "13.1",
+          "title": "NameError",
+          "lines": [
+            "print(nome)",
+            "O que significa: O nome usado não existe naquele ponto do programa.",
+            "Como corrigir: Criar a variável ou corrigir o nome digitado.",
+            "Relacionado: nomes diferenciam maiúsculas e minúsculas e variáveis locais só existem dentro do escopo em que foram criadas; confira também a grafia."
+          ],
+          "aliases": [],
+          "id": "secao-13-1"
+        },
+        {
+          "number": "13.2",
+          "title": "TypeError",
+          "lines": [
+            "\"10\" + 5",
+            "O que significa: Os tipos não combinam com a operação.",
+            "Como corrigir: Converter um dos valores ou mudar a operação.",
+            "Relacionado: TypeError indica operação incompatível entre tipos; escolha uma conversão explícita, como int() ou str(), antes de combinar os valores."
+          ],
+          "aliases": [],
+          "id": "secao-13-2"
+        },
+        {
+          "number": "13.3",
+          "title": "ValueError",
+          "lines": [
+            "int(\"abc\")",
+            "O que significa: O valor não tem formato válido para aquela conversão.",
+            "Como corrigir: Fornecer um valor adequado antes de converter.",
+            "Relacionado: ValueError indica tipo aceitável com conteúdo inválido, como int(\"abc\"); capture ValueError para pedir outra entrada sem ocultar outros erros."
+          ],
+          "aliases": [],
+          "id": "secao-13-3"
+        },
+        {
+          "number": "13.4",
+          "title": "KeyError",
+          "lines": [
+            "dic[\"nome\"]",
+            "O que significa: A chave não existe no dicionário.",
+            "Como corrigir: Usar uma chave existente ou dic.get(\"nome\").",
+            "Relacionado: dic.get(chave) evita KeyError quando a falta é normal; chave in dic permite executar uma ação diferente quando a chave não existe."
+          ],
+          "aliases": [],
+          "id": "secao-13-4"
+        },
+        {
+          "number": "13.5",
+          "title": "IndexError",
+          "lines": [
+            "lista[10]",
+            "O que significa: A posição pedida não existe na lista.",
+            "Como corrigir: Usar um índice válido ou verificar len(lista).",
+            "Relacionado: índices válidos vão de 0 até len(lista) - 1; confira se a lista não está vazia antes de acessar lista[0]."
+          ],
+          "aliases": [],
+          "id": "secao-13-5"
+        },
+        {
+          "number": "13.6",
+          "title": "SyntaxError",
+          "lines": [
+            "if idade >= 18",
+            "O que significa: A estrutura está incompleta ou escrita com sintaxe inválida.",
+            "Como corrigir: Corrigir a sintaxe, como adicionar : quando necessário.",
+            "Relacionado: SyntaxError acontece antes da execução; confira dois-pontos, parênteses, aspas e recuo da linha indicada e das linhas imediatamente anteriores."
+          ],
+          "aliases": [],
+          "id": "secao-13-6"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-13"
+    },
+    {
+      "number": 14,
+      "title": "Padrões que aparecem em muitos programas",
+      "intro": [
+        "Esses padrões servem como modelos mentais. Eles aparecem em exercícios, pequenos programas e projetos maiores."
+      ],
+      "sections": [
+        {
+          "number": "14.1",
+          "title": "Contador",
+          "lines": [
+            "contador = 0",
+            "for i in range(5):",
+            "contador += 1",
+            "print(contador)",
+            "Conta quantas vezes alguma ação acontece.",
+            "Relacionado: contador mede quantas vezes algo ocorre; len(colecao) conta itens que já estão guardados sem precisar percorrer a coleção."
+          ],
+          "aliases": [],
+          "id": "secao-14-1"
+        },
+        {
+          "number": "14.2",
+          "title": "Acumulador",
+          "lines": [
+            "total = 0",
+            "for numero in numeros:",
+            "total += numero",
+            "print(total)",
+            "Soma ou acumula valores durante um loop.",
+            "Relacionado: acumulador guarda uma soma ou resultado progressivo; sum(numeros) resolve a soma simples quando não há outra lógica no loop."
+          ],
+          "aliases": [],
+          "id": "secao-14-2"
+        },
+        {
+          "number": "14.3",
+          "title": "Flag",
+          "lines": [
+            "encontrou = False",
+            "if item == \"Arroz\":",
+            "encontrou = True",
+            "Guarda em True/False se algo já aconteceu.",
+            "Relacionado: uma flag guarda estado para usar depois; any(condicao para item in itens) resume o caso em que você só quer saber se encontrou pelo menos um."
+          ],
+          "aliases": [],
+          "id": "secao-14-3"
+        },
+        {
+          "number": "14.4",
+          "title": "Validação",
+          "lines": [
+            "idade = int(input(\"Idade: \"))",
+            "while idade < 0:",
+            "idade = int(input(\"Digite uma idade válida: \"))",
+            "Repete até receber um valor aceitável.",
+            "Atenção: isdigit() não aceita sinais como - nem casas decimais; para validar inteiros gerais, tente int() dentro de try/except ValueError.",
+            "Uso comum: combinar input(), strip(), int(), try/except e while permite pedir uma idade até receber um inteiro não negativo.",
+            "Exemplo:",
+            "while True:",
+            "    entrada = input(\"Idade: \").strip()",
+            "    try:",
+            "        idade = int(entrada)",
+            "    except ValueError:",
+            "        print(\"Digite uma idade inteira\")",
+            "        continue",
+            "    if idade >= 0:",
+            "        break",
+            "    print(\"A idade não pode ser negativa\")",
+            "Como funciona: entrada começa como texto; strip() limpa as pontas; int() tenta converter; except trata texto inválido; continue pede outra tentativa; break sai quando idade é válida.",
+            "Resultado: depois do loop, idade contém um inteiro igual ou maior que zero."
+          ],
+          "aliases": [],
+          "id": "secao-14-4"
+        },
+        {
+          "number": "14.5",
+          "title": "Menu",
+          "lines": [
+            "while True:",
+            "print(\"1 - Cadastrar\")",
+            "print(\"2 - Sair\")",
+            "opcao = input(\"Escolha: \")",
+            "if opcao == \"2\":",
+            "break",
+            "Mantém o programa rodando até a opção de saída.",
+            "Relacionado: input() devolve texto; use strip() para limpar espaços e compare opções com strings. break sai do menu e encerra o loop."
+          ],
+          "aliases": [],
+          "id": "secao-14-5"
+        },
+        {
+          "number": "14.6",
+          "title": "Procurar o maior",
+          "lines": [
+            "maior = numeros[0]",
+            "for numero in numeros:",
+            "if numero > maior:",
+            "maior = numero",
+            "Mostra o raciocínio por trás da busca do maior valor.",
+            "Relacionado: max(numeros) encontra o maior valor pronto e min(numeros) o menor; o loop manual ensina a lógica e permite aplicar filtros.",
+            "Atenção: max() e min() precisam de pelo menos um item, a menos que você forneça um valor default."
+          ],
+          "aliases": [],
+          "id": "secao-14-6"
+        }
+      ],
+      "content": [],
+      "aliases": [],
+      "id": "capitulo-14"
+    },
+    {
+      "number": 15,
+      "title": "Arquivos",
+      "intro": [
+        "Arquivos permitem salvar e ler dados fora do programa. O padrão mais seguro para trabalhar com arquivos de texto é usar with open(), porque o arquivo é fechado automaticamente ao terminar o bloco."
+      ],
+      "sections": [
+        {
+          "number": "15.1",
+          "title": "open()",
+          "lines": [
+            "open(\"arquivo.txt\", \"r\")",
+            "O que faz: Abre um arquivo e devolve um objeto de arquivo para você trabalhar com ele.",
+            "Exemplo: arquivo = open(\"nomes.txt\", \"r\")",
+            "Como funciona: o primeiro argumento é o caminho/nome do arquivo; o segundo define o modo de abertura.",
+            "Se não usar: o Python não abrirá o arquivo por essa chamada e você não terá esse objeto para ler ou escrever nele.",
+            "Relacionado: o modo pode ser omitido e então open() usa r; escolha w para substituir, a para acrescentar ou x para criar sem substituir."
+          ],
+          "aliases": [],
+          "id": "secao-15-1"
+        },
+        {
+          "number": "15.2",
+          "title": "Modos de abertura",
+          "lines": [
+            "Se você omitir o modo em open(\"arquivo.txt\"), o padrão é r: leitura, e o arquivo precisa existir",
+            "Modo r: leitura; o arquivo precisa existir; é o modo padrão",
+            "Modo w: escrita; cria o arquivo se necessário e apaga o conteúdo anterior se ele já existir",
+            "Modo a: acrescenta no final; cria o arquivo se necessário e preserva o conteúdo existente",
+            "Modo x: cria um arquivo novo e falha se ele já existir",
+            "Modo b: binário; trabalha com bytes sem converter o conteúdo para texto",
+            "Modo t: texto; é o padrão, e r e rt são equivalentes",
+            "Sinal +: permite ler e escrever no mesmo arquivo",
+            "Combinações: rb lê bytes; wb grava bytes; r+ lê e grava sem apagar; w+ lê e grava, mas apaga antes; a+ lê e acrescenta no final",
+            "Importante: com rb ou wb, não use encoding",
+            "Relacionado: use b em arquivos binários, como imagens; nesse modo os dados são bytes e o parâmetro encoding não se aplica. O sinal + combina leitura e escrita."
+          ],
+          "aliases": [
+            "r",
+            "w",
+            "a",
+            "x",
+            "rb",
+            "wb",
+            "r+",
+            "w+",
+            "a+",
+            "modo de leitura",
+            "modo de escrita",
+            "modo append",
+            "modo binário"
+          ],
+          "id": "secao-15-2"
+        },
+        {
+          "number": "15.3",
+          "title": "with open()",
+          "lines": [
+            "with open(\"nomes.txt\", \"r\") as arquivo:",
+            "for linha in arquivo:",
+            "print(linha.strip())",
+            "O que faz: abre o arquivo e garante que ele seja fechado ao sair do bloco with.",
+            "Como funciona: as como arquivo dá um nome ao objeto de arquivo dentro daquele contexto. Quando o bloco termina, o arquivo é fechado automaticamente.",
+            "Se não usar: você teria de controlar o fechamento manualmente com close(), e poderia esquecer de fechar o arquivo.",
+            "Relacionado: with também fecha o arquivo se uma exceção acontecer dentro do bloco; prefira esse padrão a abrir e lembrar de chamar close() em cada caminho."
+          ],
+          "aliases": [],
+          "id": "secao-15-3"
+        },
+        {
+          "number": "15.4",
+          "title": "close()",
+          "lines": [
+            "arquivo.close()",
+            "O que faz: fecha manualmente um arquivo que foi aberto.",
+            "Exemplo: arquivo = open(\"nomes.txt\", \"r\")",
+            "arquivo.close()",
+            "Como funciona: encerra o uso daquele objeto de arquivo e libera os recursos associados.",
+            "Importante: quando você usa with open(...), normalmente não precisa chamar close() manualmente.",
+            "Se não usar: um arquivo aberto manualmente pode permanecer aberto enquanto o programa continua executando, o que pode causar desperdício de recursos ou problemas ao trabalhar com muitos arquivos.",
+            "Relacionado: para uso normal, with open() fecha automaticamente e evita esquecer close(); o fechamento manual faz sentido quando a vida do arquivo atravessa etapas separadas."
+          ],
+          "aliases": [],
+          "id": "secao-15-4"
+        },
+        {
+          "number": "15.5",
+          "title": "read()",
+          "lines": [
+            "arquivo.read()",
+            "O que faz: lê o conteúdo do arquivo e devolve tudo como uma string.",
+            "Exemplo:",
+            "with open(\"nomes.txt\", \"r\") as arquivo:",
+            "conteudo = arquivo.read()",
+            "Resultado: conteudo recebe todo o texto do arquivo.",
+            "Se não usar: você não obteria o conteúdo inteiro por esse método.",
+            "Atenção: read() carrega todo o conteúdo para a memória; para arquivos grandes, percorra as linhas com for linha in arquivo."
+          ],
+          "aliases": [
+            "ler arquivo completo"
+          ],
+          "id": "secao-15-5"
+        },
+        {
+          "number": "15.6",
+          "title": "readline()",
+          "lines": [
+            "arquivo.readline()",
+            "O que faz: lê uma linha por vez.",
+            "Exemplo:",
+            "with open(\"nomes.txt\", \"r\") as arquivo:",
+            "linha = arquivo.readline()",
+            "Como funciona: cada chamada avança a posição de leitura.",
+            "Se não usar: você precisaria usar outro método para obter as linhas.",
+            "Relacionado: readline() avança uma linha por chamada; for linha in arquivo percorre todas sem criar uma lista de linhas. strip() pode remover a quebra final."
+          ],
+          "aliases": [],
+          "id": "secao-15-6"
+        },
+        {
+          "number": "15.7",
+          "title": "readlines()",
+          "lines": [
+            "arquivo.readlines()",
+            "O que faz: lê as linhas e devolve uma lista de strings.",
+            "Exemplo:",
+            "with open(\"nomes.txt\", \"r\") as arquivo:",
+            "linhas = arquivo.readlines()",
+            "Resultado: linhas pode ficar parecida com ['Yan\\n', 'João\\n', 'Maria\\n'].",
+            "Como funciona: cada linha vira um item da lista.",
+            "Se não usar: você pode ler o arquivo com for ou com outros métodos, mas não terá essa lista criada diretamente.",
+            "Atenção: readlines() guarda todas as linhas em uma lista; para arquivos grandes, prefira percorrer o próprio arquivo com for."
+          ],
+          "aliases": [],
+          "id": "secao-15-7"
+        },
+        {
+          "number": "15.8",
+          "title": "Percorrer um arquivo com for",
+          "lines": [
+            "with open(\"nomes.txt\", \"r\") as arquivo:",
+            "for linha in arquivo:",
+            "print(linha.strip())",
+            "O que faz: percorre as linhas do arquivo uma por uma.",
+            "Como funciona: em cada repetição, linha recebe a próxima linha do arquivo.",
+            "Essa é uma forma muito útil quando o arquivo é grande, pois você não precisa carregar todo o conteúdo de uma vez.",
+            "Se não usar: poderia ler tudo com read(), mas isso pode consumir mais memória em arquivos grandes.",
+            "Relacionado: cada repetição entrega uma linha como texto; use strip() para remover a quebra de linha e encoding=\"utf-8\" para ler caracteres acentuados corretamente."
+          ],
+          "aliases": [],
+          "id": "secao-15-8"
+        },
+        {
+          "number": "15.9",
+          "title": "write()",
+          "lines": [
+            "arquivo.write(\"texto\")",
+            "O que faz: escreve uma string no arquivo.",
+            "Exemplo:",
+            "with open(\"nomes.txt\", \"w\") as arquivo:",
+            "arquivo.write(\"Yan\\n\")",
+            "Se não usar: esse texto não será escrito por essa chamada.",
+            "Atenção: write() não acrescenta uma quebra de linha sozinho; inclua \\\\n quando quiser que o próximo texto comece em outra linha. O modo w substitui o conteúdo anterior."
+          ],
+          "aliases": [
+            "gravar arquivo",
+            "escrever em arquivo"
+          ],
+          "id": "secao-15-9"
+        },
+        {
+          "number": "15.10",
+          "title": "writelines()",
+          "lines": [
+            "arquivo.writelines(lista_de_textos)",
+            "O que faz: escreve várias strings de uma vez.",
+            "Exemplo:",
+            "linhas = [\"Yan\\n\", \"João\\n\", \"Maria\\n\"]",
+            "with open(\"nomes.txt\", \"w\") as arquivo:",
+            "arquivo.writelines(linhas)",
+            "Importante: writelines() não adiciona \\n automaticamente. Se quiser uma linha por item, as strings precisam conter a quebra de linha.",
+            "Se não usar: você pode usar write() repetidas vezes.",
+            "Atenção: writelines() não coloca separadores nem quebras de linha entre os textos; inclua \\\\n em cada elemento se quiser linhas separadas."
+          ],
+          "aliases": [],
+          "id": "secao-15-10"
+        },
+        {
+          "number": "15.11",
+          "title": "encoding",
+          "lines": [
+            "open(\"arquivo.txt\", \"r\", encoding=\"utf-8\")",
+            "O que faz: informa ao Python como os caracteres do arquivo devem ser interpretados.",
+            "Como funciona: UTF-8 é uma escolha comum para textos que podem conter acentos e outros caracteres.",
+            "encoding é o nome do parâmetro; o valor entre aspas indica a codificação usada no arquivo. Não é uma variável.",
+            "UTF-8: opção recomendada para textos novos; representa acentos, símbolos e caracteres de vários idiomas.",
+            "ASCII: codificação antiga e limitada aos caracteres básicos do inglês; não representa letras acentuadas.",
+            "latin-1 (ISO-8859-1): formato legado para parte dos idiomas da Europa Ocidental; não representa todos os caracteres Unicode.",
+            "cp1252: codificação legada comum em arquivos antigos do Windows para idiomas da Europa Ocidental.",
+            "utf-8-sig: variante para arquivos UTF-8 com BOM; ao ler, ignora o BOM inicial se existir, e ao gravar, inclui um BOM.",
+            "Escolha a codificação que corresponde ao arquivo. Se estiver criando um arquivo novo, use encoding=\"utf-8\" explicitamente.",
+            "Leitura e gravação de texto em UTF-8:",
+            "with open(\"texto.txt\", \"r\", encoding=\"utf-8\") as arquivo:",
+            "    texto = arquivo.read()",
+            "with open(\"saida.txt\", \"w\", encoding=\"utf-8\") as arquivo:",
+            "    arquivo.write(\"Olá, mundo!\")",
+            "Também existe o parâmetro errors para definir como lidar com caracteres que não podem ser convertidos. O padrão é strict; opções como replace ou ignore podem substituir ou descartar caracteres.",
+            "Se não usar encoding: o padrão pode depender do sistema, então o mesmo programa pode interpretar acentos de forma diferente em outro computador.",
+            "Relacionado: encoding informa como bytes viram texto; use a mesma codificação em leitura e gravação e especifique utf-8 em arquivos novos para reduzir diferenças entre sistemas."
+          ],
+          "aliases": [
+            "utf8",
+            "utf-8",
+            "codificação de texto",
+            "codificação de caracteres",
+            "acentos em arquivo",
+            "erro de codificação",
+            "ascii",
+            "latin-1",
+            "cp1252",
+            "utf-8-sig",
+            "bom"
+          ],
+          "id": "secao-15-11"
+        },
+        {
+          "number": "15.12",
+          "title": "seek() e tell()",
+          "lines": [
+            "arquivo.tell()",
+            "O que faz: informa a posição atual do cursor de leitura/escrita.",
+            "arquivo.seek(posicao)",
+            "O que faz: move o cursor para uma posição específica.",
+            "Exemplo:",
+            "with open(\"arquivo.txt\", \"r\") as arquivo:",
+            "arquivo.seek(0)",
+            "inicio = arquivo.read()",
+            "Se não usar: você não teria essa forma direta de consultar e alterar a posição do cursor.",
+            "Relacionado: tell() guarda a posição atual e seek() volta ou salta para uma posição; em texto, trate o valor de tell() como marcador para seek(), não como número de caracteres."
+          ],
+          "aliases": [],
+          "id": "secao-15-12"
+        }
+      ],
+      "content": [],
+      "aliases": [
+        "arquivo",
+        "arquivos",
+        "ler arquivo",
+        "escrever arquivo",
+        "salvar arquivo"
+      ],
+      "id": "capitulo-15"
+    },
+    {
+      "number": 16,
+      "title": "Métodos de strings",
+      "intro": [],
+      "sections": [
+        {
+          "number": "16.11",
+          "title": "repr() e caracteres invisíveis",
+          "lines": [
+            "repr(texto)",
+            "O que faz: Mostra a representação da string, deixando visíveis caracteres especiais como \\n e \\t.",
+            "Exemplo:\ntexto = \"Olá\\nMundo\"\nprint(texto)\nprint(repr(texto))",
+            "Resultado: print(texto) quebra a linha; repr(texto) mostra uma representação como \"Olá\\nMundo\".",
+            "Como funciona: repr() produz uma representação útil para inspecionar o conteúdo real da string.",
+            "Se não usar: pode ser mais difícil perceber onde existem quebras de linha, tabulações ou outros caracteres especiais.",
+            "Relacionado: print(texto) mostra a string interpretada, enquanto repr(texto) exibe escapes visíveis; compare os dois ao investigar quebras de linha e tabulações."
+          ],
+          "aliases": [],
+          "id": "secao-16-11"
+        },
+        {
+          "number": "16.12",
+          "title": "\\n e \\t",
+          "lines": [
+            "\\n = quebra de linha    |    \\t = tabulação",
+            "O que faz: Representam caracteres especiais dentro de strings.",
+            "Exemplo:\nprint(\"Olá\\nMundo\")\nprint(\"Nome:\\tYan\")",
+            "Resultado: a primeira string aparece em duas linhas; a segunda usa uma tabulação.",
+            "\\n cria uma nova linha e \\t cria uma tabulação.",
+            "Se não usar: essas quebras e tabulações específicas não seriam inseridas.",
+            "Relacionado: r\"...\" cria uma raw string que evita interpretar a maioria das barras invertidas; é útil em caminhos e expressões regulares."
+          ],
+          "aliases": [],
+          "id": "secao-16-12"
+        },
+        {
+          "number": "16.1",
+          "title": "strip()",
+          "lines": [
+            "texto.strip()",
+            "O que faz: remove espaços e caracteres de quebra nas pontas do texto.",
+            "Exemplo: \"  Yan\\n\".strip()  →  \"Yan\"",
+            "Uso comum com arquivos: cada linha lida pode trazer \\n no final, então linha.strip() deixa o texto mais limpo.",
+            "Se não usar: a quebra de linha ou espaços nas pontas podem continuar no texto.",
+            "Relacionado: strip() remove caracteres indicados de ambas as pontas, não um prefixo exato; para remover só um lado use lstrip() ou rstrip()."
+          ],
+          "aliases": [],
+          "id": "secao-16-1"
+        },
+        {
+          "number": "16.2",
+          "title": "lstrip()",
+          "lines": [
+            "texto.lstrip()",
+            "O que faz: remove espaços/caracteres das pontas somente do lado esquerdo.",
+            "Exemplo: \"   Yan  \".lstrip()  →  \"Yan  \"",
+            "Relacionado: lstrip() afeta só o começo do texto; strip() remove das duas pontas e rstrip() só do final. Nenhum deles remove espaços no meio."
+          ],
+          "aliases": [],
+          "id": "secao-16-2"
+        },
+        {
+          "number": "16.3",
+          "title": "rstrip()",
+          "lines": [
+            "texto.rstrip()",
+            "O que faz: remove espaços/caracteres das pontas somente do lado direito.",
+            "Exemplo: \"   Yan  \".rstrip()  →  \"   Yan\"",
+            "Uso comum com arquivos: rstrip() pode ser usado para remover a quebra de linha do final sem mexer no começo do texto.",
+            "Relacionado: rstrip() é comum depois de ler uma linha; use strip() para limpar as duas pontas e lstrip() para preservar o final."
+          ],
+          "aliases": [],
+          "id": "secao-16-3"
+        },
+        {
+          "number": "16.4",
+          "title": "split()",
+          "lines": [
+            "texto.split(separador)",
+            "O que faz: divide uma string e devolve uma lista.",
+            "Exemplo: \"Arroz,Feijão,Leite\".split(\",\")  →  [\"Arroz\", \"Feijão\", \"Leite\"]",
+            "Uso comum com arquivos: útil quando uma linha possui dados separados por vírgula, espaço ou outro separador.",
+            "Relacionado: sem separador, split() divide por sequências de espaços em branco; com separador, divide exatamente naquele texto. maxsplit limita a quantidade de divisões."
+          ],
+          "aliases": [],
+          "id": "secao-16-4"
+        },
+        {
+          "number": "16.5",
+          "title": "join()",
+          "lines": [
+            "separador.join(lista)",
+            "O que faz: junta strings de uma lista em um único texto.",
+            "Exemplo: \", \".join([\"Arroz\", \"Feijão\"])  →  \"Arroz, Feijão\"",
+            "Se não usar: você teria de montar a string manualmente.",
+            "Atenção: join() espera que todos os elementos já sejam strings; use map(str, valores) quando a lista mistura números e textos. O separador é escrito antes do nome da lista."
+          ],
+          "aliases": [],
+          "id": "secao-16-5"
+        },
+        {
+          "number": "16.6",
+          "title": "replace()",
+          "lines": [
+            "texto.replace(\"antigo\", \"novo\")",
+            "O que faz: substitui uma parte do texto por outra.",
+            "Exemplo: \"Olá Yan\".replace(\"Yan\", \"João\")  →  \"Olá João\"",
+            "Relacionado: replace() devolve uma string nova e não altera a original; o terceiro argumento opcional limita quantas substituições serão feitas."
+          ],
+          "aliases": [],
+          "id": "secao-16-6"
+        },
+        {
+          "number": "16.7",
+          "title": "lower() e upper()",
+          "lines": [
+            "texto.lower()",
+            "Converte o texto para letras minúsculas.",
+            "texto.upper()",
+            "Converte o texto para letras maiúsculas.",
+            "Exemplo: \"Python\".lower() → \"python\"",
+            "Relacionado: lower() e upper() criam versões em minúsculas ou maiúsculas; casefold() é mais indicado para comparações sem diferenciar caixa em vários idiomas."
+          ],
+          "aliases": [],
+          "id": "secao-16-7"
+        },
+        {
+          "number": "16.8",
+          "title": "startswith() e endswith()",
+          "lines": [
+            "texto.startswith(\"prefixo\")",
+            "Verifica se o texto começa com determinado trecho.",
+            "texto.endswith(\"sufixo\")",
+            "Verifica se o texto termina com determinado trecho.",
+            "Exemplo: \"dados.txt\".endswith(\".txt\")  →  True",
+            "Relacionado: startswith() e endswith() verificam as pontas do texto; in procura em qualquer posição. Ambos podem ser usados para validar extensão ou prefixo antes de processar."
+          ],
+          "aliases": [],
+          "id": "secao-16-8"
+        },
+        {
+          "number": "16.9",
+          "title": "find()",
+          "lines": [
+            "texto.find(\"trecho\")",
+            "O que faz: procura um trecho e devolve sua posição; se não encontrar, retorna -1.",
+            "Exemplo: \"Python\".find(\"th\")  →  2",
+            "Relacionado: find() devolve -1 se não achar; index() procura da mesma forma, mas gera ValueError quando falta; use in quando só precisa de True ou False."
+          ],
+          "aliases": [],
+          "id": "secao-16-9"
+        },
+        {
+          "number": "16.10",
+          "title": "in para verificar texto",
+          "lines": [
+            "\"trecho\" in texto",
+            "O que faz: verifica se um trecho existe dentro de uma string.",
+            "Exemplo: \"Py\" in \"Python\"  →  True",
+            "Relacionado: em texto, in procura um trecho; em uma lista, procura um item; em um dicionário, verifica a existência de uma chave."
+          ],
+          "aliases": [],
+          "id": "secao-16-10"
+        },
+        {
+          "number": "16.13",
+          "title": "Verificar o conteúdo de um texto",
+          "lines": [
+            "texto.isdigit()",
+            "O que faz: retorna True se o texto não estiver vazio e todos os caracteres forem dígitos; só verifica, não converte para int.",
+            "Exemplo:",
+            "\"123\".isdigit()   # True",
+            "\"-3\".isdigit()    # False",
+            "\"2.5\".isdigit()   # False",
+            "\"\".isdigit()      # False",
+            "Como funciona: isdecimal() verifica dígitos decimais de base 10; é mais restrito que isdigit().",
+            "Como funciona: isnumeric() aceita ainda mais caracteres com significado numérico, como frações Unicode; isso não garante que int() consiga convertê-los.",
+            "Como funciona: isalpha() retorna True para texto não vazio composto apenas por letras; letras acentuadas também contam.",
+            "Como funciona: isalnum() retorna True para texto não vazio composto apenas por letras e números, sem espaços nem pontuação.",
+            "Como funciona: isspace() retorna True para texto não vazio composto apenas por espaços ou outros caracteres de espaço em branco.",
+            "Exemplo:",
+            "\"²\".isdecimal()  # False",
+            "\"²\".isdigit()    # True",
+            "\"²\".isnumeric()  # True",
+            "\"⅕\".isnumeric()  # True",
+            "\"Olá\".isalpha()  # True",
+            "\"abc123\".isalnum()  # True",
+            "\"abc 123\".isalnum() # False",
+            "Atenção: isdigit() pode reconhecer símbolos como ² que int() não converte; isdecimal() é uma checagem mais próxima dos dígitos que formam inteiros decimais.",
+            "Observação: para saber se um texto pode virar inteiro, uma alternativa confiável é tentar int() e tratar ValueError; veja a compreensão de listas no capítulo 11.",
+            "Relacionado: isdigit(), isdecimal() e isnumeric() testam categorias diferentes de caracteres; para converter, use int() ou float() e trate o erro de conversão quando a entrada puder variar."
+          ],
+          "aliases": [
+            "isdigit",
+            "isdecimal",
+            "isnumeric",
+            "isalpha",
+            "isalnum",
+            "isspace",
+            "verificar se texto é número",
+            "validar texto",
+            "validar entrada",
+            "testar dígitos",
+            "testar letras e números"
+          ],
+          "id": "secao-16-13"
+        }
+      ],
+      "content": [
+        "Método é uma ação disponível para um objeto. Em texto, métodos como strip() pertencem às strings.",
+        "Exemplo: nome.strip()",
+        "nome é a string; strip() é o método; () executa o método."
+      ],
+      "aliases": [
+        "string",
+        "strings",
+        "texto",
+        "métodos de texto"
+      ],
+      "id": "capitulo-16"
+    }
+  ]
+}

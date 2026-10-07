@@ -1,0 +1,443 @@
+{
+  "library": "win32com_client",
+  "title": "win32com.client · pywin32",
+  "description": "Automatize aplicativos Windows com COM: entenda Dispatch, trabalhe com Excel e Word e controle a instância e os erros.",
+  "source": "Tutorial original baseado no quick start oficial do cliente COM pywin32.",
+  "sources": [
+    "https://github.com/mhammond/pywin32/blob/main/com/win32com/HTML/QuickStartClientCom.html",
+    "https://github.com/mhammond/pywin32/blob/main/README.md"
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Entender COM e obter um objeto",
+      "id": "ref-win32com_client-cap-1",
+      "intro": [
+        "COM é uma interface de automação do Windows. O servidor COM define os nomes de métodos, propriedades e constantes; Python os acessa por objetos proxy."
+      ],
+      "content": [],
+      "aliases": [
+        "pywin32, Dispatch, ProgID, objetos"
+      ],
+      "sections": [
+        {
+          "number": "1.1",
+          "title": "Instalar pywin32",
+          "id": "ref-win32com_client-1-1",
+          "lines": [
+            "python -m pip install pywin32\nimport win32com.client",
+            "O que faz: Instala extensões do Windows e importa o cliente de automação.",
+            "Argumentos principais: Nome do pacote: pywin32; caminho de importação: win32com.client.",
+            "Exemplo:",
+            "python -m pip install pywin32",
+            "",
+            "import win32com.client as win32",
+            "Resultado: A importação funciona no Python em que pywin32 foi instalado.",
+            "Como funciona: Instale no ambiente que executará o programa.",
+            "Atenção: A automação Excel/Word requer Windows e o aplicativo correspondente instalado/registrado."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.2",
+          "title": "Criar objeto com Dispatch",
+          "id": "ref-win32com_client-1-2",
+          "lines": [
+            "win32.Dispatch(\"Excel.Application\")",
+            "O que faz: Obtém um objeto COM pelo ProgID do aplicativo.",
+            "Argumentos principais: ProgID identifica o servidor registrado; Excel.Application é exemplo do Office.",
+            "Exemplo:",
+            "import win32com.client as win32",
+            "",
+            "excel = win32.Dispatch(\"Excel.Application\")",
+            "excel.Visible = True",
+            "Resultado: O objeto permite acessar propriedades e métodos do Excel.",
+            "Como funciona: Dispatch cria ou conecta conforme o servidor e o estado da aplicação; o modelo de objetos é definido pelo produto.",
+            "Atenção: Consulte ajuda do Excel/Word para saber membros aceitos."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.3",
+          "title": "Ler e alterar propriedade COM",
+          "id": "ref-win32com_client-1-3",
+          "lines": [
+            "objeto.propriedade\nobjeto.propriedade = valor",
+            "O que faz: Consulta ou define uma propriedade exposta pelo servidor.",
+            "Argumentos principais: O nome e o tipo do valor dependem do objeto COM específico.",
+            "Exemplo:",
+            "excel = win32.Dispatch(\"Excel.Application\")",
+            "excel.Visible = True",
+            "print(excel.Name)",
+            "Resultado: A janela aparece e o nome do aplicativo é lido.",
+            "Como funciona: O proxy Python encaminha a propriedade ao servidor COM.",
+            "Atenção: Um membro incorreto normalmente resulta em erro COM ou AttributeError."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.4",
+          "title": "Chamar método e passar argumentos",
+          "id": "ref-win32com_client-1-4",
+          "lines": [
+            "objeto.Metodo(arg1, arg2)",
+            "O que faz: Executa uma operação oferecida pelo aplicativo.",
+            "Argumentos principais: Assinatura, ordem e valores esperados vêm da documentação do programa automatizado.",
+            "Exemplo:",
+            "pasta = excel.Workbooks.Add()",
+            "print(pasta.Name)",
+            "Resultado: Uma nova pasta de trabalho é criada.",
+            "Como funciona: Add é método da coleção Workbooks; o objeto retornado representa a pasta criada.",
+            "Atenção: Métodos COM podem ter parâmetros posicionais e nomeados dependendo do wrapper gerado."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.5",
+          "title": "Criar instância separada com DispatchEx",
+          "id": "ref-win32com_client-1-5",
+          "lines": [
+            "win32.DispatchEx(\"Excel.Application\")",
+            "O que faz: Solicita uma nova instância para o script controlar isoladamente.",
+            "Argumentos principais: Recebe ProgID do aplicativo COM.",
+            "Exemplo:",
+            "excel = win32.DispatchEx(\"Excel.Application\")",
+            "excel.Visible = False",
+            "Resultado: Uma instância própria pode trabalhar sem mostrar janela.",
+            "Como funciona: Instância separada facilita identificar o que o script deve fechar no finally.",
+            "Atenção: O servidor pode controlar internamente quantos processos abre."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.6",
+          "title": "Conectar a instância já aberta",
+          "id": "ref-win32com_client-1-6",
+          "lines": [
+            "win32.GetActiveObject(\"Excel.Application\")",
+            "O que faz: Conecta a um aplicativo COM que já esteja em execução.",
+            "Argumentos principais: ProgID deve estar ativo e registrado.",
+            "Exemplo:",
+            "excel = win32.GetActiveObject(\"Excel.Application\")",
+            "print(excel.Name)",
+            "Resultado: Obtém referência ao Excel existente.",
+            "Como funciona: Essa chamada se conecta à sessão existente em vez de solicitar instância nova.",
+            "Atenção: Não chame Quit numa instância que pertence à pessoa usuária."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.7",
+          "title": "Encontrar os métodos disponíveis",
+          "id": "ref-win32com_client-1-7",
+          "lines": [
+            "Ajuda do produto → modelo de objetos → método/propriedade",
+            "O que faz: Descobre API COM confiável para o aplicativo específico.",
+            "Argumentos principais: Use referências oficiais do Office, Object Browser ou documentação de automação; COM browser pode ajudar.",
+            "Exemplo:",
+            "# No Excel, por exemplo:",
+            "excel = win32.Dispatch(\"Excel.Application\")",
+            "pasta = excel.Workbooks.Add()",
+            "planilha = pasta.Worksheets(1)",
+            "Resultado: Workbooks e Worksheets são membros documentados do modelo Excel.",
+            "Como funciona: Nomes não são universais entre aplicativos: Dispatch só cria a ponte; não traduz uma API para outra.",
+            "Atenção: Evite copiar métodos de exemplos do Word e presumir que existem no Excel."
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Automatizar Excel com encerramento seguro",
+      "id": "ref-win32com_client-cap-2",
+      "intro": [
+        "Excel organiza seu objeto em Application → Workbooks → Workbook → Worksheets → Worksheet → Range. Guarde as referências quando for usá-las várias vezes."
+      ],
+      "content": [],
+      "aliases": [
+        "Workbook, Worksheet, Range, salvar, Quit"
+      ],
+      "sections": [
+        {
+          "number": "2.1",
+          "title": "Criar e selecionar uma planilha",
+          "id": "ref-win32com_client-2-1",
+          "lines": [
+            "pasta = excel.Workbooks.Add()\nplanilha = pasta.Worksheets(1)",
+            "O que faz: Cria pasta e seleciona primeira aba.",
+            "Argumentos principais: Add pode aceitar template; Worksheets aceita índice 1-based ou nome.",
+            "Exemplo:",
+            "excel = win32.DispatchEx(\"Excel.Application\")",
+            "pasta = excel.Workbooks.Add()",
+            "planilha = pasta.Worksheets(1)",
+            "planilha.Name = \"Resumo\"",
+            "Resultado: A primeira aba se chama Resumo.",
+            "Como funciona: COM usa índices de coleção do Excel começando em 1, diferente de listas Python.",
+            "Atenção: Também pode selecionar por planilha = pasta.Worksheets(\"Resumo\")."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.2",
+          "title": "Escrever e ler uma célula",
+          "id": "ref-win32com_client-2-2",
+          "lines": [
+            "planilha.Range(\"A1\").Value = valor",
+            "O que faz: Acessa célula ou intervalo pelo endereço Excel.",
+            "Argumentos principais: Range recebe endereço A1 ou intervalo A1:B5; Value lê/escreve conteúdo.",
+            "Exemplo:",
+            "planilha.Range(\"A1\").Value = \"Produto\"",
+            "planilha.Range(\"B1\").Value = \"Café\"",
+            "print(planilha.Range(\"B1\").Value)",
+            "Resultado: A1 contém Produto; B1 contém Café.",
+            "Como funciona: A atribuição envia o valor ao Excel por chamada COM.",
+            "Atenção: Use Cells(linha, coluna) se os índices forem calculados."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.3",
+          "title": "Escrever matriz em bloco",
+          "id": "ref-win32com_client-2-3",
+          "lines": [
+            "planilha.Range(\"A1:B3\").Value = matriz",
+            "O que faz: Preenche um intervalo retangular com uma única atribuição.",
+            "Argumentos principais: matriz precisa ser uma sequência de sequências com mesmo número de colunas; Range deve ter dimensões correspondentes.",
+            "Exemplo:",
+            "matriz = ((\"Produto\", \"Preço\"), (\"Café\", 14.5), (\"Chá\", 9.0))",
+            "planilha.Range(\"A1:B3\").Value = matriz",
+            "Resultado: Uma tabela 3×2 é preenchida.",
+            "Como funciona: Uma chamada em bloco é muito mais eficiente que chamar Value para cada célula em loops grandes.",
+            "Atenção: Valide dimensões e tipos antes de transferir grande volume."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.4",
+          "title": "Inserir fórmula Excel",
+          "id": "ref-win32com_client-2-4",
+          "lines": [
+            "planilha.Range(\"C2\").Formula = \"=SUM(B2:B10)\"",
+            "O que faz: Coloca uma fórmula que o Excel pode calcular.",
+            "Argumentos principais: Formula recebe expressão com sinal =; FormulaLocal usa nomes/localização regionais do Excel.",
+            "Exemplo:",
+            "planilha.Range(\"C2\").Formula = \"=SUM(B2:B10)\"",
+            "Resultado: C2 contém fórmula de soma.",
+            "Como funciona: A automação atribui fórmula; o próprio Excel calcula conforme modo de cálculo.",
+            "Atenção: Não interprete retorno vazio do COM como prova de que a fórmula está errada; pode precisar recalcular."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.5",
+          "title": "Formatar título e largura",
+          "id": "ref-win32com_client-2-5",
+          "lines": [
+            "planilha.Range(\"A1:B1\").Font.Bold = True",
+            "O que faz: Ajusta propriedades de apresentação expostas por Range.",
+            "Argumentos principais: Font, Interior, NumberFormat e ColumnWidth são exemplos de propriedades do Excel.",
+            "Exemplo:",
+            "cabecalho = planilha.Range(\"A1:B1\")",
+            "cabecalho.Font.Bold = True",
+            "cabecalho.Interior.Color = 0xD9EAD3",
+            "planilha.Columns(\"A:B\").AutoFit()",
+            "Resultado: Cabeçalhos ficam em negrito e colunas ajustam largura ao conteúdo.",
+            "Como funciona: COM usa objetos relacionados às células; propriedades e códigos de cor seguem o modelo Excel.",
+            "Atenção: Consulte o formato esperado de cor e valores na documentação VBA/Excel."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.6",
+          "title": "Salvar a pasta de trabalho",
+          "id": "ref-win32com_client-2-6",
+          "lines": [
+            "pasta.SaveAs(caminho_absoluto)",
+            "O que faz: Grava a pasta num arquivo.",
+            "Argumentos principais: SaveAs aceita caminho e parâmetros opcionais para formato; use caminho absoluto para reduzir ambiguidade.",
+            "Exemplo:",
+            "from pathlib import Path",
+            "",
+            "caminho = str(Path(\"relatorio.xlsx\").resolve())",
+            "pasta.SaveAs(caminho)",
+            "Resultado: O arquivo é salvo na pasta atual resolvida.",
+            "Como funciona: Path.resolve converte caminho relativo em caminho absoluto.",
+            "Atenção: Se o destino existe, confira se deve sobrescrever antes de salvar."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.7",
+          "title": "Fechar somente os objetos criados pelo script",
+          "id": "ref-win32com_client-2-7",
+          "lines": [
+            "pasta.Close(SaveChanges=False)\nexcel.Quit()",
+            "O que faz: Fecha workbook e encerra aplicativo iniciado pela automação.",
+            "Argumentos principais: Close recebe SaveChanges; Quit encerra Application.",
+            "Exemplo:",
+            "excel = win32.DispatchEx(\"Excel.Application\")",
+            "pasta = None",
+            "try:",
+            "    pasta = excel.Workbooks.Add()",
+            "    pasta.Worksheets(1).Range(\"A1\").Value = \"Relatório\"",
+            "    pasta.SaveAs(str(Path(\"relatorio.xlsx\").resolve()))",
+            "finally:",
+            "    if pasta is not None:",
+            "        pasta.Close(SaveChanges=False)",
+            "    excel.Quit()",
+            "Resultado: Até se houver falha, a pasta e a instância própria são fechadas.",
+            "Como funciona: finally roda ao sair do bloco e reduz processos Excel órfãos.",
+            "Atenção: Não execute Quit numa instância obtida de GetActiveObject."
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Word e robustez da automação",
+      "id": "ref-win32com_client-cap-3",
+      "intro": [
+        "Automação COM executa no aplicativo instalado. Abra uma instância própria, conclua ações com revisão e capture erros do servidor."
+      ],
+      "content": [],
+      "aliases": [
+        "Word, Outlook, erros, segurança"
+      ],
+      "sections": [
+        {
+          "number": "3.1",
+          "title": "Criar e preencher documento Word",
+          "id": "ref-win32com_client-3-1",
+          "lines": [
+            "word.Documents.Add()\ndoc.Content.Text = texto",
+            "O que faz: Cria documento novo e substitui o texto do corpo principal.",
+            "Argumentos principais: Documents.Add cria documento; Content representa o corpo; Paragraphs e Range permitem edição mais detalhada.",
+            "Exemplo:",
+            "word = win32.DispatchEx(\"Word.Application\")",
+            "word.Visible = True",
+            "doc = word.Documents.Add()",
+            "doc.Content.Text = \"Relatório criado pelo Python\"",
+            "Resultado: O Word abre um documento com o texto.",
+            "Como funciona: O objeto doc é independente da referência word que controla o aplicativo.",
+            "Atenção: Para estilos, tabelas e seções, use o modelo de objetos do Word."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.2",
+          "title": "Salvar documento Word e fechar",
+          "id": "ref-win32com_client-3-2",
+          "lines": [
+            "doc.SaveAs2(caminho)\ndoc.Close(SaveChanges=False)",
+            "O que faz: Salva e fecha documento.",
+            "Argumentos principais: SaveAs2 recebe caminho e opções de formato; Close pode salvar alterações.",
+            "Exemplo:",
+            "caminho = str(Path(\"relatorio.docx\").resolve())",
+            "doc.SaveAs2(caminho)",
+            "doc.Close(SaveChanges=False)",
+            "Resultado: O documento fica salvo e fechado.",
+            "Como funciona: Use pathlib para construir destino consistente.",
+            "Atenção: Depois encerre a instância Word que foi criada com word.Quit()."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.3",
+          "title": "Criar rascunho de e-mail no Outlook",
+          "id": "ref-win32com_client-3-3",
+          "lines": [
+            "outlook.CreateItem(0)",
+            "O que faz: Cria um item de email do Outlook para conferência.",
+            "Argumentos principais: 0 identifica um MailItem no Outlook clássico; To, Subject e Body definem campos básicos.",
+            "Exemplo:",
+            "outlook = win32.Dispatch(\"Outlook.Application\")",
+            "email = outlook.CreateItem(0)",
+            "email.To = \"destinatario@example.com\"",
+            "email.Subject = \"Revisão do relatório\"",
+            "email.Body = \"Olá! Segue para revisão.\"",
+            "email.Display()",
+            "Resultado: Uma janela de rascunho é exibida.",
+            "Como funciona: Display mostra para revisão e não envia automaticamente.",
+            "Atenção: Send() envia uma mensagem; só use após validar destinatários, conteúdo e autorização."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.4",
+          "title": "Capturar erros COM",
+          "id": "ref-win32com_client-3-4",
+          "lines": [
+            "except pywintypes.com_error as erro",
+            "O que faz: Trata erros originados pelo servidor COM ou pela chamada ao aplicativo.",
+            "Argumentos principais: A exceção contém informações do erro e descrição/HRESULT de acordo com a falha.",
+            "Exemplo:",
+            "import pywintypes",
+            "",
+            "try:",
+            "    excel = win32.Dispatch(\"Excel.Application\")",
+            "except pywintypes.com_error as erro:",
+            "    print(\"Falha COM:\", erro)",
+            "Resultado: A aplicação apresenta um diagnóstico em vez de encerrar sem contexto.",
+            "Como funciona: Causas comuns: ProgID errado, aplicativo não instalado, permissão, argumento inválido ou diálogo modal bloqueando o servidor.",
+            "Atenção: Registre detalhes úteis sem expor documentos ou dados pessoais."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.5",
+          "title": "Resolver Class not registered",
+          "id": "ref-win32com_client-3-5",
+          "lines": [
+            "ProgID correto + Office instalado/registrado + ambiente compatível",
+            "O que faz: Confere pré-requisitos da criação do objeto.",
+            "Argumentos principais: Confira nome exato do ProgID, Windows, instalação do Office e Python que executa.",
+            "Exemplo:",
+            "import win32com.client as win32",
+            "",
+            "excel = win32.Dispatch(\"Excel.Application\")",
+            "Resultado: Se o COM server está registrado, Dispatch retorna proxy do aplicativo.",
+            "Como funciona: A exceção surge antes de acessar Workbooks, então a falha está na resolução/ativação do servidor.",
+            "Atenção: Fechar e reiniciar o instalador ou registrar DLLs sem entender a origem pode alterar a instalação; primeiro diagnostique."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.6",
+          "title": "Usar constantes COM documentadas",
+          "id": "ref-win32com_client-3-6",
+          "lines": [
+            "win32.constants.NOME_DA_CONSTANTE",
+            "O que faz: Acessa constantes de biblioteca de tipos gerada pelo pywin32.",
+            "Argumentos principais: Os nomes e valores dependem do aplicativo/type library; makepy/EnsureDispatch podem gerar suporte.",
+            "Exemplo:",
+            "word = win32.gencache.EnsureDispatch(\"Word.Application\")",
+            "# Consulte a constante pelo nome documentado para a versão do Word",
+            "Resultado: Wrappers gerados podem disponibilizar constantes e autocomplete adicional.",
+            "Como funciona: A geração depende da biblioteca de tipos do servidor COM.",
+            "Atenção: Não substitua números por nomes inventados: valide na documentação/ambiente."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.7",
+          "title": "Limites: processo, Windows e aplicativo",
+          "id": "ref-win32com_client-3-7",
+          "lines": [
+            "win32com.client automatiza um servidor COM local compatível; não é uma biblioteca genérica de planilhas multiplataforma.",
+            "O que faz: Define quando a automação é apropriada.",
+            "Argumentos principais: Windows, pywin32 e aplicativo registrado são pré-requisitos usuais para Office COM.",
+            "Exemplo:",
+            "if sys.platform != \"win32\":",
+            "    raise RuntimeError(\"Este fluxo COM requer Windows\")",
+            "Resultado: O programa interrompe com explicação em sistema incompatível.",
+            "Como funciona: Para gerar .xlsx em diferentes sistemas, pandas/openpyxl podem ser melhores; COM é útil quando precisa interagir com Office instalado.",
+            "Atenção: Evite automatizar Office COM dentro de serviço servidor ou tarefa concorrente sem avaliar os requisitos do aplicativo."
+          ],
+          "aliases": []
+        }
+      ]
+    }
+  ]
+}

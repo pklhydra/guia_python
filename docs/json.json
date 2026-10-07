@@ -1,0 +1,389 @@
+{
+  "library": "json",
+  "title": "json · biblioteca padrão",
+  "description": "Converta estruturas Python em JSON e vice-versa, selecione dados, grave arquivos e diagnostique conteúdo inválido.",
+  "source": "Tutorial original construído a partir da documentação oficial do módulo json.",
+  "sources": [
+    "https://docs.python.org/3/library/json.html"
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Modelo mental: JSON e tipos Python",
+      "id": "ref-json-cap-1",
+      "intro": [
+        "JSON é um formato de texto para transportar dados. Antes de converter, entenda os tipos correspondentes e as limitações do formato."
+      ],
+      "content": [],
+      "aliases": [
+        "tipos, import, serializar"
+      ],
+      "sections": [
+        {
+          "number": "1.1",
+          "title": "Importar o módulo",
+          "id": "ref-json-1-1",
+          "lines": [
+            "import json",
+            "O que faz: Carrega as funções do formato JSON incluídas no Python.",
+            "Argumentos principais: json é biblioteca padrão; não exige instalação por pip.",
+            "Exemplo:",
+            "import json",
+            "",
+            "print(json.dumps({\"ok\": True}))",
+            "Resultado: A saída é o texto JSON {\"ok\": true}.",
+            "Como funciona: JSON é o formato; json é o módulo Python que interpreta e gera esse formato.",
+            "Atenção: Não confunda JSON com um dict: dict é objeto Python na memória; JSON é texto."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.2",
+          "title": "Mapeamento dos tipos",
+          "id": "ref-json-1-2",
+          "lines": [
+            "dict ↔ object | list/tuple ↔ array | str ↔ string | None ↔ null",
+            "O que faz: Mostra como os tipos Python comuns atravessam a conversão.",
+            "Argumentos principais: bool vira true/false; int e float viram number; chaves de objetos JSON são strings.",
+            "Exemplo:",
+            "texto = '{\"cliente\": \"Lia\", \"ativo\": true, \"limite\": null}'",
+            "dados = json.loads(texto)",
+            "print(dados)",
+            "Resultado: Um dict Python com str, bool e None.",
+            "Como funciona: O decodificador reconhece tokens JSON e cria objetos equivalentes em Python.",
+            "Atenção: JSON não preserva tuplas: elas voltam como listas."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.3",
+          "title": "Converter objeto para string com dumps",
+          "id": "ref-json-1-3",
+          "lines": [
+            "json.dumps(objeto, *, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False)",
+            "O que faz: Serializa uma estrutura em uma string JSON.",
+            "Argumentos principais: ensure_ascii controla escape Unicode; indent formata; sort_keys ordena; separators compacta; default adapta tipos; allow_nan restringe valores não padrão.",
+            "Exemplo:",
+            "dados = {\"nome\": \"João\", \"pontos\": [8, 10]}",
+            "texto = json.dumps(dados, ensure_ascii=False, indent=2)",
+            "print(texto)",
+            "Resultado: Uma string JSON legível preservando os acentos.",
+            "Como funciona: dumps percorre a estrutura e devolve texto; não cria arquivo.",
+            "Atenção: Use indent em arquivos que serão inspecionados por pessoas; omita para texto compacto."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.4",
+          "title": "Converter texto para objeto com loads",
+          "id": "ref-json-1-4",
+          "lines": [
+            "json.loads(texto, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None)",
+            "O que faz: Interpreta uma string JSON e retorna os tipos Python equivalentes.",
+            "Argumentos principais: texto é uma string/bytes; object_hook transforma cada objeto; parse_float/int personalizam números.",
+            "Exemplo:",
+            "texto = '{\"produto\": \"Café\", \"quantidade\": 3}'",
+            "dados = json.loads(texto)",
+            "print(dados[\"quantidade\"] + 1)",
+            "Resultado: 4.",
+            "Como funciona: loads valida a sintaxe JSON e constrói dict, list e valores escalares.",
+            "Atenção: O texto precisa conter exatamente um documento JSON completo."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.5",
+          "title": "Formatar e ordenar a saída",
+          "id": "ref-json-1-5",
+          "lines": [
+            "json.dumps(dados, ensure_ascii=False, indent=2, sort_keys=True)",
+            "O que faz: Cria JSON estável e fácil de revisar em controle de versão ou depuração.",
+            "Argumentos principais: indent controla recuo; sort_keys ordena chaves; ensure_ascii preserva caracteres legíveis.",
+            "Exemplo:",
+            "dados = {\"z\": 1, \"cidade\": \"São Paulo\"}",
+            "print(json.dumps(dados, ensure_ascii=False, indent=2, sort_keys=True))",
+            "Resultado: As chaves aparecem ordenadas e São Paulo não vira sequência de escapes Unicode.",
+            "Como funciona: Ordenar objetos pode facilitar diff textual, mas não altera a semântica dos dados.",
+            "Atenção: Ordenação só se aplica às chaves dos objetos, não reorganiza arrays."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.6",
+          "title": "Criar JSON compacto",
+          "id": "ref-json-1-6",
+          "lines": [
+            "json.dumps(dados, separators=(\",\", \":\"))",
+            "O que faz: Remove espaços extras entre elementos e chave/valor.",
+            "Argumentos principais: separators é par (separador_itens, separador_chave_valor).",
+            "Exemplo:",
+            "print(json.dumps({\"ok\": True, \"n\": 4}, separators=(\",\", \":\")))",
+            "Resultado: {\"ok\":true,\"n\":4}.",
+            "Como funciona: Formato compacto é útil para transmissão; não comprime os dados como gzip.",
+            "Atenção: Use o formato indentado para leitura humana."
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Arquivos, consultas e transformação",
+      "id": "ref-json-cap-2",
+      "intro": [
+        "O fluxo de arquivo usa dump/load. Depois de carregar, os dados são objetos normais do Python e podem ser filtrados e transformados."
+      ],
+      "content": [],
+      "aliases": [
+        "dump, load, encoding, campos"
+      ],
+      "sections": [
+        {
+          "number": "2.1",
+          "title": "Escrever arquivo JSON com dump",
+          "id": "ref-json-2-1",
+          "lines": [
+            "json.dump(objeto, arquivo, *, ensure_ascii=True, indent=None, sort_keys=False, default=None)",
+            "O que faz: Escreve JSON diretamente num arquivo já aberto.",
+            "Argumentos principais: objeto é dado Python; arquivo deve estar aberto para escrita; indent e ensure_ascii formatam o resultado.",
+            "Exemplo:",
+            "dados = {\"nome\": \"João\", \"ativo\": True}",
+            "with open(\"config.json\", \"w\", encoding=\"utf-8\") as arquivo:",
+            "    json.dump(dados, arquivo, ensure_ascii=False, indent=2)",
+            "Resultado: config.json recebe um objeto JSON válido.",
+            "Como funciona: with fecha o arquivo mesmo se a serialização der erro.",
+            "Atenção: Se quiser obter uma string antes de salvar, use dumps."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.2",
+          "title": "Ler arquivo JSON com load",
+          "id": "ref-json-2-2",
+          "lines": [
+            "json.load(arquivo)",
+            "O que faz: Lê um arquivo de texto e converte seu JSON em tipos Python.",
+            "Argumentos principais: arquivo deve estar aberto para leitura; object_hook permite converter objetos.",
+            "Exemplo:",
+            "with open(\"config.json\", encoding=\"utf-8\") as arquivo:",
+            "    config = json.load(arquivo)",
+            "",
+            "print(config.get(\"tema\", \"system\"))",
+            "Resultado: Obtém o tema salvo ou usa system como padrão.",
+            "Como funciona: load consome o arquivo e faz a decodificação; o cursor do arquivo fica no fim.",
+            "Atenção: Abra arquivo textual com encoding=\"utf-8\" para tratar acentos."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.3",
+          "title": "Escolher as quatro funções certas",
+          "id": "ref-json-2-3",
+          "lines": [
+            "dump/load recebem um arquivo; dumps/loads recebem/devolvem texto.",
+            "O que faz: Evita trocar string por arquivo ou gravar conteúdo sem querer.",
+            "Argumentos principais: dump Python→arquivo; dumps Python→string; load arquivo→Python; loads string→Python.",
+            "Exemplo:",
+            "texto = json.dumps(dados)",
+            "restaurado = json.loads(texto)",
+            "",
+            "with open(\"copia.json\", \"w\", encoding=\"utf-8\") as arquivo:",
+            "    json.dump(restaurado, arquivo, ensure_ascii=False)",
+            "Resultado: A estrutura é serializada, recuperada e depois gravada em arquivo.",
+            "Como funciona: A letra s lembra string. Essa distinção ajuda a decidir se deve usar open.",
+            "Atenção: Use load/ dump em arquivo; loads/dumps em texto que já está numa variável."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.4",
+          "title": "Selecionar campos permitidos",
+          "id": "ref-json-2-4",
+          "lines": [
+            "campos = [\"id\", \"nome\"]\nlimpo = [{chave: item.get(chave) for chave in campos} for item in registros]",
+            "O que faz: Cria uma exportação controlada, copiando só as chaves permitidas.",
+            "Argumentos principais: item.get(chave, padrão) permite definir valor para campo ausente.",
+            "Exemplo:",
+            "registros = [{\"id\": 1, \"nome\": \"Ana\", \"senha\": \"segredo\"}]",
+            "campos = [\"id\", \"nome\"]",
+            "limpo = [{chave: item.get(chave) for chave in campos} for item in registros]",
+            "print(json.dumps(limpo, ensure_ascii=False))",
+            "Resultado: A chave senha não é incluída no JSON final.",
+            "Como funciona: A lista de permitidos é mais segura que remover uma chave proibida por vez.",
+            "Atenção: Revise campos pessoais ou credenciais antes de exportar dados."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.5",
+          "title": "Tratar listas e objetos aninhados",
+          "id": "ref-json-2-5",
+          "lines": [
+            "dados[\"pedidos\"][0][\"itens\"]",
+            "O que faz: Acessa um caminho de chaves e índices dentro de estruturas JSON carregadas.",
+            "Argumentos principais: dict usa chave; list usa índice começando em zero.",
+            "Exemplo:",
+            "dados = {\"pedidos\": [{\"numero\": 12, \"itens\": [\"café\", \"chá\"]}]}",
+            "primeiro = dados[\"pedidos\"][0][\"itens\"][0]",
+            "print(primeiro)",
+            "Resultado: café.",
+            "Como funciona: Cada colchete acessa um nível e o tipo retornado determina o próximo acesso.",
+            "Atenção: Valide listas vazias e chaves ausentes antes de acessar dados recebidos externamente."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.6",
+          "title": "Acessar chaves opcionais",
+          "id": "ref-json-2-6",
+          "lines": [
+            "dados.get(\"cliente\", {}).get(\"nome\", \"Sem nome\")",
+            "O que faz: Consulta estruturas opcionais sem KeyError quando falta uma chave.",
+            "Argumentos principais: get(chave, padrão) devolve o padrão somente quando a chave não existe.",
+            "Exemplo:",
+            "dados = {\"cliente\": {}}",
+            "nome = dados.get(\"cliente\", {}).get(\"nome\", \"Sem nome\")",
+            "print(nome)",
+            "Resultado: Sem nome.",
+            "Como funciona: O primeiro padrão {} cria um dict temporário para a consulta seguinte.",
+            "Atenção: Se cliente puder ser None ou texto, teste o tipo antes de chamar get."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.7",
+          "title": "Gravar um documento por linha",
+          "id": "ref-json-2-7",
+          "lines": [
+            "for linha in arquivo: objeto = json.loads(linha)",
+            "O que faz: Lê JSON Lines, convenção com um objeto JSON independente em cada linha.",
+            "Argumentos principais: Cada linha deve ser JSON válido; JSON Lines costuma usar extensão .jsonl.",
+            "Exemplo:",
+            "with open(\"eventos.jsonl\", encoding=\"utf-8\") as arquivo:",
+            "    for numero, linha in enumerate(arquivo, start=1):",
+            "        if linha.strip():",
+            "            evento = json.loads(linha)",
+            "            print(numero, evento.get(\"tipo\"))",
+            "Resultado: Eventos são processados um de cada vez.",
+            "Como funciona: O arquivo não é um array JSON; cada linha é decodificada separadamente.",
+            "Atenção: Para arquivos convencionais, use json.load uma vez no documento inteiro."
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Erros, validação e tipos próprios",
+      "id": "ref-json-cap-3",
+      "intro": [
+        "JSON é deliberadamente menor que o conjunto de tipos Python. Trate dados inválidos e converta tipos como data explicitamente."
+      ],
+      "content": [],
+      "aliases": [
+        "JSONDecodeError, TypeError, data e NaN"
+      ],
+      "sections": [
+        {
+          "number": "3.1",
+          "title": "Entender erro de sintaxe",
+          "id": "ref-json-3-1",
+          "lines": [
+            "except json.JSONDecodeError as erro",
+            "O que faz: Captura JSON malformado e mostra onde a leitura parou.",
+            "Argumentos principais: erro.msg, erro.lineno, erro.colno e erro.pos descrevem a falha.",
+            "Exemplo:",
+            "texto = '{\"nome\": Lia}'",
+            "try:",
+            "    dados = json.loads(texto)",
+            "except json.JSONDecodeError as erro:",
+            "    print(f\"Linha {erro.lineno}, coluna {erro.colno}: {erro.msg}\")",
+            "Resultado: A mensagem indica a posição do conteúdo inválido.",
+            "Como funciona: JSON exige aspas duplas em strings e nomes de chaves.",
+            "Atenção: Não use eval para tentar interpretar JSON; eval executa código Python."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.2",
+          "title": "Evitar NaN e Infinity no JSON",
+          "id": "ref-json-3-2",
+          "lines": [
+            "json.dumps(dados, allow_nan=False)",
+            "O que faz: Faz a serialização falhar se um float não representável em JSON estiver presente.",
+            "Argumentos principais: allow_nan=True é o padrão permissivo do Python; False segue JSON estrito.",
+            "Exemplo:",
+            "dados = {\"medida\": float(\"nan\")}",
+            "json.dumps(dados, allow_nan=False)",
+            "Resultado: O código gera ValueError em vez de escrever NaN como se fosse JSON padrão.",
+            "Como funciona: NaN e infinitos são valores de float do Python, mas não valores JSON válidos.",
+            "Atenção: Trate ou substitua o valor não finito antes da exportação."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.3",
+          "title": "Serializar uma data com default",
+          "id": "ref-json-3-3",
+          "lines": [
+            "json.dumps(dados, default=conversor)",
+            "O que faz: Fornece conversão para objetos que o codificador JSON não reconhece nativamente.",
+            "Argumentos principais: default recebe o objeto não suportado e deve devolver tipo compatível ou lançar TypeError.",
+            "Exemplo:",
+            "from datetime import date",
+            "",
+            "def conversor(objeto):",
+            "    if isinstance(objeto, date):",
+            "        return objeto.isoformat()",
+            "    raise TypeError(f\"Tipo não serializável: {type(objeto).__name__}\")",
+            "",
+            "texto = json.dumps({\"dia\": date(2026, 10, 7)}, default=conversor)",
+            "Resultado: A data vira string ISO 2026-10-07.",
+            "Como funciona: A conversão para texto não preserva automaticamente o tipo date.",
+            "Atenção: Ao ler, decida como e em quais campos converter a string de volta."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.4",
+          "title": "Transformar objetos ao decodificar",
+          "id": "ref-json-3-4",
+          "lines": [
+            "json.loads(texto, object_hook=funcao)",
+            "O que faz: Aplica uma função a cada dict decodificado antes de devolvê-lo.",
+            "Argumentos principais: object_hook recebe um dicionário e deve retornar objeto substituto.",
+            "Exemplo:",
+            "def identificar(objeto):",
+            "    if objeto.get(\"tipo\") == \"ponto\":",
+            "        return (objeto[\"x\"], objeto[\"y\"])",
+            "    return objeto",
+            "",
+            "texto = '{\"tipo\":\"ponto\",\"x\":2,\"y\":5}'",
+            "valor = json.loads(texto, object_hook=identificar)",
+            "Resultado: valor passa a ser a tupla (2, 5).",
+            "Como funciona: object_hook roda para cada objeto JSON, incluindo objetos internos.",
+            "Atenção: Não transforme todos os dicts sem verificar uma marca confiável."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.5",
+          "title": "Reconhecer que JSON não tem enquadramento",
+          "id": "ref-json-3-5",
+          "lines": [
+            "json.dump(objeto, arquivo)",
+            "O que faz: Um arquivo JSON padrão deve conter um documento completo, não uma sequência de dumps concatenados.",
+            "Argumentos principais: Use uma lista/objeto raíz única ou escolha JSON Lines para registros separados.",
+            "Exemplo:",
+            "with open(\"dados.json\", \"w\", encoding=\"utf-8\") as arquivo:",
+            "    json.dump([{\"id\": 1}, {\"id\": 2}], arquivo)",
+            "Resultado: O arquivo contém um único array com dois objetos.",
+            "Como funciona: JSON não especifica como separar vários valores raíz lado a lado.",
+            "Atenção: Para anexar eventos por linha, use JSON Lines com json.dumps por registro."
+          ],
+          "aliases": []
+        }
+      ]
+    }
+  ]
+}

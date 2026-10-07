@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fb">
+  <meta name="description" content="Tutoriais práticos de Python, bibliotecas padrão, interfaces gráficas, APIs e planilhas Excel.">
+  <title>Python de bolso — documentação</title>
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-button menu-toggle" id="menu-toggle" aria-label="Abrir sumário" title="Abrir sumário">☰</button>
+    <a class="brand" href="#inicio" aria-label="Python de bolso, início"><span class="brand-mark">Py</span><span><strong>Python de bolso</strong><small>Documentação prática</small></span></a>
+    <div class="top-actions">
+      <label class="search-wrap" for="search-input"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Buscar por ideia, sintaxe ou exemplo..." autocomplete="off"><kbd>Ctrl K</kbd></label>
+      <button class="icon-button theme-toggle" id="theme-toggle" aria-label="Alternar tema" title="Alternar tema claro ou escuro">◐</button>
+    </div>
+  </header>
+  <div class="layout">
+    <div class="scrim" id="scrim"></div>
+    <aside class="sidebar" id="sidebar" aria-label="Sumário">
+      <div class="library-heading">BIBLIOTECAS</div>
+      <nav id="library-switcher" class="library-switcher" aria-label="Escolher biblioteca">
+        <div class="library-group-label">BIBLIOTECA PADRÃO DO PYTHON</div>
+        <button type="button" class="library-button active" data-library="python">Python · conceitos gerais</button>
+        <button type="button" class="library-button" data-library="tkinter">Tkinter</button>
+        <button type="button" class="library-button" data-library="json">json</button>
+        <button type="button" class="library-button" data-library="random">random</button>
+        <button type="button" class="library-button" data-library="sys">sys</button>
+        <div class="library-group-label external-label">BIBLIOTECAS EXTERNAS</div>
+        <button type="button" class="library-button" data-library="customtkinter">CustomTkinter</button>
+        <button type="button" class="library-button" data-library="requests">Requests</button>
+        <button type="button" class="library-button" data-library="win32com_client">win32com.client · pywin32</button>
+        <button type="button" class="library-button" data-library="pandas_openpyxl">Pandas + OpenPyXL</button>
+      </nav>
+      <div class="side-heading"><span>SUMÁRIO</span><span class="chapter-count" id="chapter-count"></span></div>
+      <nav id="toc" class="toc"></nav>
+      <div class="sidebar-foot">Conteúdo organizado para consulta prática.</div>
+    </aside>
+    <main id="main-content" class="main-content">
+      <div class="reading-width">
+        <div class="crumbs"><span>DOCUMENTAÇÃO</span><span>/</span><span id="crumb-current">INÍCIO</span></div>
+        <section class="welcome" id="welcome">
+          <div class="eyebrow"><span class="status-dot"></span> GUIA DE CONSULTA</div>
+          <h1 id="welcome-title">Cola de código<br><em>do seu jeito.</em></h1>
+          <p id="welcome-description">Escolha uma biblioteca e encontre rapidamente a sintaxe e os exemplos. Pesquise pelo nome técnico ou descreva o que você quer fazer.</p>
+          <div class="welcome-search" role="button" tabindex="0" id="welcome-search"><span>⌕</span><span>Experimente “como mexer com dicionário”</span><kbd>⌘ K</kbd></div>
+          <div class="welcome-meta"><span id="library-name">Python padrão</span><i></i><span id="section-total">112 tópicos</span><i></i><span>Busca local</span></div>
+        </section>
+        <section id="search-results" class="search-results" hidden aria-live="polite"></section>
+        <article id="documentation" class="documentation"></article>
+        <footer class="page-footer"><span>Python de bolso</span><span>Exemplos e explicações organizados por biblioteca.</span></footer>
+      </div>
+    </main>
+  </div>
+  <script src="content.js?v=2"></script>
+  <script src="tkinter.js?v=3"></script>
+  <script src="customtkinter.js?v=3"></script>
+  <script src="json.js?v=2"></script>
+  <script src="random.js?v=2"></script>
+  <script src="sys.js?v=2"></script>
+  <script src="requests.js?v=2"></script>
+  <script src="win32com_client.js?v=2"></script>
+  <script src="pandas_openpyxl.js?v=1"></script>
+  <script src="app.js?v=9"></script>
+</body>
+</html>
+

@@ -1,0 +1,732 @@
+{
+  "library": "tkinter",
+  "title": "Tkinter · biblioteca padrão",
+  "description": "Aprenda a construir interfaces com Tkinter: janela, widgets, geometria, eventos, formulários, diálogos e componentes ttk.",
+  "source": "Tutorial original reescrito para esta cola com base na documentação oficial do Tkinter.",
+  "sources": [
+    "https://docs.python.org/3/library/tkinter.html",
+    "https://docs.python.org/3/library/tkinter.ttk.html"
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Entender a aplicação e criar a janela",
+      "id": "ref-tkinter-cap-1",
+      "intro": [
+        "Toda interface Tkinter tem uma janela raiz, widgets filhos e um loop de eventos. O programa cria a interface antes de iniciar esse loop."
+      ],
+      "content": [],
+      "aliases": [
+        "início, root, janela principal"
+      ],
+      "sections": [
+        {
+          "number": "1.1",
+          "title": "Importar Tkinter e criar a raiz",
+          "id": "ref-tkinter-1-1",
+          "lines": [
+            "import tkinter as tk\napp = tk.Tk()",
+            "O que faz: Cria a janela principal, que será a raiz de todos os componentes da interface.",
+            "Argumentos principais: tk.Tk() não recebe um pai; opções visuais podem ser definidas depois por métodos da janela.",
+            "Exemplo:",
+            "import tkinter as tk",
+            "",
+            "app = tk.Tk()",
+            "app.title(\"Meu aplicativo\")",
+            "app.mainloop()",
+            "Resultado: Uma janela vazia com o título Meu aplicativo permanece aberta.",
+            "Como funciona: Tk() cria a conexão com Tcl/Tk e a janela raiz. mainloop() passa a processar cliques, teclado e redesenho.",
+            "Atenção: Crie apenas uma raiz Tk por aplicação; para outra janela use Toplevel.",
+            "Relacionado: Widgets filhos recebem a janela ou um Frame como primeiro argumento."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.2",
+          "title": "Definir título e tamanho",
+          "id": "ref-tkinter-1-2",
+          "lines": [
+            "app.title(titulo)\napp.geometry(\"larguraxaltura+x+y\")",
+            "O que faz: Ajusta o nome na barra da janela e sua dimensão/posição inicial.",
+            "Argumentos principais: title recebe texto. geometry recebe largura x altura e, opcionalmente, deslocamentos da tela, por exemplo 800x500+80+60.",
+            "Exemplo:",
+            "app.title(\"Cadastro de clientes\")",
+            "app.geometry(\"800x500+80+60\")",
+            "Resultado: A janela abre com 800 por 500 pixels, deslocada 80 pixels da esquerda e 60 do topo.",
+            "Como funciona: O sistema de janelas pode ajustar a posição solicitada; geometry define o pedido inicial, não o layout interno.",
+            "Atenção: Use app.geometry(\"800x500\") para definir só tamanho."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.3",
+          "title": "Permitir ou impedir redimensionamento",
+          "id": "ref-tkinter-1-3",
+          "lines": [
+            "app.resizable(width=True, height=True)",
+            "O que faz: Decide se a pessoa pode alterar largura e altura da janela.",
+            "Argumentos principais: width e height são booleanos independentes.",
+            "Exemplo:",
+            "app.resizable(width=False, height=True)",
+            "Resultado: A largura fica fixa e a altura pode mudar.",
+            "Como funciona: O método limita o redimensionamento feito pelo usuário; não posiciona os widgets.",
+            "Atenção: Se o conteúdo deve se adaptar, configure o gerenciador de layout antes de bloquear tamanho.",
+            "Relacionado: wm_resizable é um alias."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.4",
+          "title": "Definir tamanho mínimo e máximo",
+          "id": "ref-tkinter-1-4",
+          "lines": [
+            "app.minsize(width, height)\napp.maxsize(width, height)",
+            "O que faz: Estabelece limites para o redimensionamento da janela.",
+            "Argumentos principais: width/height são pixels; maxsize não é obrigatório.",
+            "Exemplo:",
+            "app.minsize(520, 360)",
+            "app.maxsize(1200, 900)",
+            "Resultado: A janela não fica menor que 520×360 nem maior que o máximo definido.",
+            "Como funciona: Esses limites se aplicam à janela externa, que também inclui a barra de título e bordas.",
+            "Atenção: Use minsize quando campos ou botões deixariam de caber em uma janela pequena."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.5",
+          "title": "Escolher o ícone e a posição inicial",
+          "id": "ref-tkinter-1-5",
+          "lines": [
+            "app.iconbitmap(caminho_ico)\napp.geometry(\"800x500+100+80\")",
+            "O que faz: Personaliza o ícone da janela e solicita uma posição inicial.",
+            "Argumentos principais: iconbitmap recebe um arquivo .ico no Windows; geometry pode receber deslocamentos +x+y.",
+            "Exemplo:",
+            "app.iconbitmap(\"assets/app.ico\")",
+            "app.geometry(\"800x500+100+80\")",
+            "Resultado: A janela usa o ícone e pede para abrir perto do canto superior esquerdo.",
+            "Como funciona: O caminho é interpretado a partir da pasta atual se não for absoluto.",
+            "Atenção: Use pathlib.Path para construir caminhos relativos ao arquivo do programa."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "1.6",
+          "title": "Encerrar o loop da aplicação",
+          "id": "ref-tkinter-1-6",
+          "lines": [
+            "app.destroy()",
+            "O que faz: Fecha a janela raiz e finaliza o loop quando não há outras janelas Tk abertas.",
+            "Argumentos principais: destroy não recebe argumento.",
+            "Exemplo:",
+            "def fechar():",
+            "    app.destroy()",
+            "",
+            "botao = tk.Button(app, text=\"Sair\", command=fechar)",
+            "Resultado: Ao clicar, a janela é destruída.",
+            "Como funciona: O callback precisa ser passado sem parênteses: command=fechar. Os parênteses executariam a função durante a montagem da tela.",
+            "Atenção: Use app.quit() para encerrar mainloop sem destruir imediatamente todos os widgets."
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Posicionar widgets sem brigar com o layout",
+      "id": "ref-tkinter-cap-2",
+      "intro": [
+        "Criar um widget não o mostra. Pack, grid e place são gerenciadores de geometria; use cada um no nível do seu próprio contêiner."
+      ],
+      "content": [],
+      "aliases": [
+        "pack, grid, place, frame, propagação"
+      ],
+      "sections": [
+        {
+          "number": "2.1",
+          "title": "Empilhar componentes com pack",
+          "id": "ref-tkinter-2-1",
+          "lines": [
+            "widget.pack(side=\"top\", fill=\"x\", expand=False, padx=0, pady=0, anchor=\"center\")",
+            "O que faz: Organiza widgets em sequência junto a uma borda do contêiner.",
+            "Argumentos principais: side: top/bottom/left/right; fill: none/x/y/both; expand: ocupa espaço livre; padx/pady: margem externa; ipadx/ipady: espaço interno; anchor: alinhamento no espaço.",
+            "Exemplo:",
+            "tk.Label(app, text=\"Nome\").pack(anchor=\"w\", padx=12, pady=(12, 4))",
+            "tk.Entry(app).pack(fill=\"x\", padx=12)",
+            "Resultado: O rótulo e o campo ficam em coluna; o campo estica na horizontal.",
+            "Como funciona: Pack reserva espaço na ordem em que é chamado. Uma barra lateral empacotada à esquerda pode anteceder uma área que expande.",
+            "Atenção: fill e expand têm papéis diferentes: fill estica o widget no espaço reservado; expand faz o espaço reservado crescer."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.2",
+          "title": "Montar formulários com grid",
+          "id": "ref-tkinter-2-2",
+          "lines": [
+            "widget.grid(row=0, column=0, rowspan=1, columnspan=1, sticky=\"nsew\", padx=0, pady=0)",
+            "O que faz: Posiciona widgets em linhas e colunas.",
+            "Argumentos principais: row/column começam em zero; rowspan/columnspan ocupam mais células; sticky usa n/s/e/w; padx/pady definem margens.",
+            "Exemplo:",
+            "tk.Label(app, text=\"E-mail:\").grid(row=0, column=0, sticky=\"w\", padx=10, pady=8)",
+            "entrega = tk.Entry(app)",
+            "entrega.grid(row=0, column=1, sticky=\"ew\", padx=10, pady=8)",
+            "app.grid_columnconfigure(1, weight=1)",
+            "Resultado: Rótulo fica na coluna 0 e o campo cresce na coluna 1.",
+            "Como funciona: grid distribui células; weight define qual linha/coluna absorve espaço extra quando o pai aumenta.",
+            "Atenção: sticky=\"ew\" ocupa a largura; o peso da coluna permite que essa largura realmente cresça."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.3",
+          "title": "Espalhar linhas e colunas com peso",
+          "id": "ref-tkinter-2-3",
+          "lines": [
+            "pai.grid_rowconfigure(linha, weight=1)\npai.grid_columnconfigure(coluna, weight=1)",
+            "O que faz: Define como o espaço extra é repartido dentro de um contêiner grid.",
+            "Argumentos principais: weight=0 não cresce; weight positivo recebe parte do espaço; uniform pode agrupar tamanhos.",
+            "Exemplo:",
+            "app.grid_columnconfigure(0, weight=1)",
+            "app.grid_rowconfigure(0, weight=1)",
+            "conteudo.grid(row=0, column=0, sticky=\"nsew\")",
+            "Resultado: A área conteudo acompanha a expansão horizontal e vertical da janela.",
+            "Como funciona: É preciso configurar o peso no contêiner que possui a grade. Configurar o widget filho não faz o pai crescer.",
+            "Atenção: Se usar um Frame como raiz do layout, configure o peso nesse Frame."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.4",
+          "title": "Posicionar em coordenadas com place",
+          "id": "ref-tkinter-2-4",
+          "lines": [
+            "widget.place(x=20, y=30, relx=0, rely=0, anchor=\"nw\", width=120, height=36)",
+            "O que faz: Coloca um widget numa posição explícita ou proporcional.",
+            "Argumentos principais: x/y/width/height usam pixels; relx/rely/relwidth/relheight usam frações entre 0 e 1; anchor define o ponto de referência.",
+            "Exemplo:",
+            "tk.Label(app, text=\"Aviso\").place(relx=0.5, rely=0.5, anchor=\"center\")",
+            "Resultado: O rótulo fica no centro da janela.",
+            "Como funciona: Place usa coordenadas; ao redimensionar, posições fixas podem deixar espaços ou sobreposições.",
+            "Atenção: Use principalmente para elementos sobrepostos ou posicionamentos especiais, não para formulários adaptáveis."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.5",
+          "title": "Impedir que os filhos redimensionem um Frame",
+          "id": "ref-tkinter-2-5",
+          "lines": [
+            "frame.pack_propagate(False)\nframe.grid_propagate(False)",
+            "O que faz: Desliga a propagação automática do tamanho solicitado pelos filhos para o contêiner.",
+            "Argumentos principais: O argumento booleano: False desliga; True liga; pack_propagate e grid_propagate correspondem ao gerenciador usado.",
+            "Exemplo:",
+            "painel = tk.Frame(app, width=240, height=120, bg=\"#eeeeee\")",
+            "painel.pack()",
+            "painel.pack_propagate(False)",
+            "Resultado: O Frame tenta manter 240×120 mesmo que os filhos peçam tamanho menor.",
+            "Como funciona: Por padrão o pai calcula seu tamanho a partir dos filhos. Desligar propagação torna width/height do pai relevantes.",
+            "Atenção: Se os filhos ultrapassarem o tamanho, podem ser recortados; não use para corrigir um layout mal configurado."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "2.6",
+          "title": "Combinar pack e grid sem conflito",
+          "id": "ref-tkinter-2-6",
+          "lines": [
+            "toolbar.pack(fill=\"x\")\nconteudo.grid(row=0, column=0)",
+            "O que faz: Usa pack e grid em contêineres diferentes, cada qual responsável por uma parte.",
+            "Argumentos principais: A regra é por master: não misture os dois gerenciadores entre irmãos no mesmo contêiner.",
+            "Exemplo:",
+            "barra = tk.Frame(app)",
+            "barra.pack(fill=\"x\")",
+            "corpo = tk.Frame(app)",
+            "corpo.pack(fill=\"both\", expand=True)",
+            "tk.Label(barra, text=\"Barra\").pack(side=\"left\")",
+            "tk.Label(corpo, text=\"Conteúdo\").grid(row=0, column=0)",
+            "Resultado: A raiz organiza barra e corpo com pack; o corpo organiza seus filhos com grid.",
+            "Como funciona: Um Frame cria um novo escopo de layout. Cada escopo pode escolher seu próprio gerenciador.",
+            "Atenção: Misturar pack e grid entre irmãos no mesmo master pode travar ou produzir geometria imprevisível."
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Campos, botões e variáveis vinculadas",
+      "id": "ref-tkinter-cap-3",
+      "intro": [
+        "Widgets mostram ou recebem dados. Variáveis Tk mantêm valores de componentes sincronizados com o código Python."
+      ],
+      "content": [],
+      "aliases": [
+        "Label, Entry, Button, StringVar, Checkbutton, Combobox"
+      ],
+      "sections": [
+        {
+          "number": "3.1",
+          "title": "Criar um botão e ligar uma ação",
+          "id": "ref-tkinter-3-1",
+          "lines": [
+            "tk.Button(pai, text=\"Salvar\", command=funcao)",
+            "O que faz: Exibe um botão que executa um callback ao ser ativado.",
+            "Argumentos principais: text define rótulo; command recebe função sem chamá-la; state aceita normal/disabled.",
+            "Exemplo:",
+            "def salvar():",
+            "    print(\"Salvo\")",
+            "",
+            "tk.Button(app, text=\"Salvar\", command=salvar).pack()",
+            "Resultado: Clicar no botão chama salvar uma vez.",
+            "Como funciona: Tkinter chama a função quando ocorre o evento de clique.",
+            "Atenção: command=salvar() executa cedo e tenta usar o retorno como callback."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.2",
+          "title": "Ler o conteúdo de um Entry",
+          "id": "ref-tkinter-3-2",
+          "lines": [
+            "campo.get()",
+            "O que faz: Retorna o texto digitado no campo.",
+            "Argumentos principais: get não recebe argumento; delete(início, fim) apaga; insert(índice, texto) insere.",
+            "Exemplo:",
+            "campo = tk.Entry(app)",
+            "campo.pack()",
+            "campo.insert(0, \"Ana\")",
+            "print(campo.get())",
+            "Resultado: A saída é Ana.",
+            "Como funciona: Entry armazena texto. Valide e converta antes de tratar o conteúdo como número.",
+            "Atenção: Para acompanhar valor automaticamente, vincule textvariable a StringVar."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.3",
+          "title": "Sincronizar widgets com StringVar",
+          "id": "ref-tkinter-3-3",
+          "lines": [
+            "variavel = tk.StringVar(value=\"\")\nwidget = tk.Entry(app, textvariable=variavel)",
+            "O que faz: Vincula o conteúdo de um widget a uma variável Tk observável.",
+            "Argumentos principais: StringVar para texto; IntVar para inteiros; DoubleVar para reais; BooleanVar para verdadeiro/falso; value define inicial.",
+            "Exemplo:",
+            "nome = tk.StringVar(value=\"\")",
+            "tk.Entry(app, textvariable=nome).pack()",
+            "",
+            "def mostrar():",
+            "    print(nome.get())",
+            "Resultado: O método get lê o valor atual do Entry.",
+            "Como funciona: A variável é um objeto Tcl/Tk ligado ao widget, não uma string comum.",
+            "Atenção: Use .set(valor) para atualizar a interface pelo código."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.4",
+          "title": "Validar antes de converter números",
+          "id": "ref-tkinter-3-4",
+          "lines": [
+            "texto = campo.get()\nvalor = int(texto)",
+            "O que faz: Converte uma entrada após conferir se ela representa o formato esperado.",
+            "Argumentos principais: int converte inteiro; float converte decimal com ponto; try/except captura ValueError.",
+            "Exemplo:",
+            "try:",
+            "    quantidade = int(campo.get())",
+            "except ValueError:",
+            "    mensagem.config(text=\"Digite um número inteiro\")",
+            "else:",
+            "    mensagem.config(text=f\"Quantidade: {quantidade}\")",
+            "Resultado: Entrada inválida mostra orientação; válida é convertida.",
+            "Como funciona: O conteúdo de Entry sempre começa como texto. A exceção aparece quando a conversão não é possível.",
+            "Atenção: Para impedir caracteres durante digitação, use validate/validatecommand; ainda valide ao salvar."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.5",
+          "title": "Marcar uma opção com Checkbutton",
+          "id": "ref-tkinter-3-5",
+          "lines": [
+            "tk.Checkbutton(pai, text=\"Ativo\", variable=flag, onvalue=True, offvalue=False)",
+            "O que faz: Cria uma caixa de seleção conectada a uma variável.",
+            "Argumentos principais: variable guarda estado; onvalue/offvalue são valores selecionados/desmarcados; command pode reagir à mudança.",
+            "Exemplo:",
+            "ativo = tk.BooleanVar(value=True)",
+            "tk.Checkbutton(app, text=\"Ativo\", variable=ativo).pack()",
+            "print(ativo.get())",
+            "Resultado: ativo.get() retorna True ou False.",
+            "Como funciona: O widget muda a variável quando a pessoa marca ou desmarca.",
+            "Atenção: Use IntVar se preferir valores inteiros 1 e 0."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.6",
+          "title": "Escolher uma opção em Combobox",
+          "id": "ref-tkinter-3-6",
+          "lines": [
+            "ttk.Combobox(pai, values=opcoes, state=\"readonly\")",
+            "O que faz: Oferece uma lista suspensa de valores.",
+            "Argumentos principais: values define opções; state=\"readonly\" impede digitação livre; textvariable conecta variável.",
+            "Exemplo:",
+            "from tkinter import ttk",
+            "",
+            "tipo = tk.StringVar(value=\"Pessoa física\")",
+            "combo = ttk.Combobox(app, textvariable=tipo, values=[\"Pessoa física\", \"Empresa\"], state=\"readonly\")",
+            "combo.pack()",
+            "Resultado: A pessoa escolhe um dos dois tipos.",
+            "Como funciona: O valor selecionado pode ser lido com tipo.get() ou combo.get().",
+            "Atenção: Atenção: selecione explicitamente um valor padrão quando nenhuma escolha não for aceitável."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "3.7",
+          "title": "Mostrar mensagem ou pedir caminho",
+          "id": "ref-tkinter-3-7",
+          "lines": [
+            "messagebox.showinfo(titulo, mensagem)\nfiledialog.askopenfilename()",
+            "O que faz: Abre diálogos nativos para informar, confirmar ou selecionar arquivos.",
+            "Argumentos principais: messagebox tem showinfo/showwarning/showerror/askyesno; filedialog inclui askopenfilename, asksaveasfilename e askdirectory.",
+            "Exemplo:",
+            "from tkinter import messagebox, filedialog",
+            "",
+            "if messagebox.askyesno(\"Salvar\", \"Quer escolher um arquivo?\"):",
+            "    caminho = filedialog.asksaveasfilename(defaultextension=\".txt\", filetypes=[(\"Texto\", \"*.txt\")])",
+            "Resultado: O primeiro diálogo pede confirmação; o segundo devolve caminho ou string vazia ao cancelar.",
+            "Como funciona: O retorno do diálogo deve ser conferido antes de abrir o arquivo.",
+            "Atenção: Use parent=app para associar o diálogo à janela raiz."
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Eventos, janelas e componentes ttk",
+      "id": "ref-tkinter-cap-4",
+      "intro": [
+        "Eventos permitem reagir a teclado e mouse; ttk oferece componentes temáticos com aparência nativa do sistema."
+      ],
+      "content": [],
+      "aliases": [
+        "bind, after, Toplevel, notebook, Treeview, menu"
+      ],
+      "sections": [
+        {
+          "number": "4.1",
+          "title": "Associar evento de teclado ou mouse",
+          "id": "ref-tkinter-4-1",
+          "lines": [
+            "widget.bind(\"<Return>\", callback, add=\"+\")",
+            "O que faz: Registra uma função para reagir a um evento.",
+            "Argumentos principais: sequence é padrão de evento; callback recebe um objeto Event; add=\"+\" adiciona sem substituir vínculos existentes.",
+            "Exemplo:",
+            "def enviar(evento):",
+            "    print(\"Enter pressionado\")",
+            "",
+            "app.bind(\"<Return>\", enviar)",
+            "Resultado: Pressionar Enter chama enviar com informações do evento.",
+            "Como funciona: Ao contrário de command, a função de bind recebe um argumento Event.",
+            "Atenção: Padrões comuns: <Button-1>, <Double-Button-1>, <Escape>, <KeyRelease>."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "4.2",
+          "title": "Executar tarefa depois ou periodicamente",
+          "id": "ref-tkinter-4-2",
+          "lines": [
+            "app.after(milisegundos, funcao)",
+            "O que faz: Agenda uma chamada sem bloquear o loop de interface.",
+            "Argumentos principais: O tempo é em milissegundos; a função é passada sem parênteses; after devolve um identificador cancelável.",
+            "Exemplo:",
+            "def atualizar():",
+            "    relogio.config(text=\"Atualizado\")",
+            "    app.after(1000, atualizar)",
+            "",
+            "app.after(1000, atualizar)",
+            "Resultado: A função roda depois de um segundo e agenda a próxima atualização.",
+            "Como funciona: O evento continua processando enquanto aguarda. Um sleep() dentro do callback congelaria a janela.",
+            "Atenção: Use app.after_cancel(id) para cancelar um agendamento."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "4.3",
+          "title": "Abrir janela secundária com Toplevel",
+          "id": "ref-tkinter-4-3",
+          "lines": [
+            "janela = tk.Toplevel(app)",
+            "O que faz: Cria uma janela adicional ligada à aplicação existente.",
+            "Argumentos principais: O primeiro argumento é a janela mestre; use transient, grab_set e protocol para comportamento adicional.",
+            "Exemplo:",
+            "janela = tk.Toplevel(app)",
+            "janela.title(\"Preferências\")",
+            "janela.geometry(\"360x220\")",
+            "janela.transient(app)",
+            "Resultado: Uma janela secundária aparece associada à principal.",
+            "Como funciona: Toplevel compartilha a aplicação Tk; não cria outra raiz.",
+            "Atenção: Para uma janela modal simples, chame grab_set e espere o fechamento de modo controlado."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "4.4",
+          "title": "Criar abas com ttk.Notebook",
+          "id": "ref-tkinter-4-4",
+          "lines": [
+            "notebook.add(frame, text=\"Aba\")",
+            "O que faz: Organiza áreas de conteúdo em abas selecionáveis.",
+            "Argumentos principais: add recebe widget filho; text é rótulo; select escolhe aba; tab(index, state=...) configura estado.",
+            "Exemplo:",
+            "from tkinter import ttk",
+            "",
+            "abas = ttk.Notebook(app)",
+            "perfil = ttk.Frame(abas)",
+            "preferencias = ttk.Frame(abas)",
+            "abas.add(perfil, text=\"Perfil\")",
+            "abas.add(preferencias, text=\"Preferências\")",
+            "abas.pack(fill=\"both\", expand=True)",
+            "Resultado: Duas abas aparecem e cada uma recebe seus próprios widgets.",
+            "Como funciona: Cada aba é um contêiner independente para seu layout.",
+            "Atenção: Não misture o grid da aba com o pack usado para colocar as abas na raiz: são masters diferentes."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "4.5",
+          "title": "Montar lista estruturada com Treeview",
+          "id": "ref-tkinter-4-5",
+          "lines": [
+            "tree = ttk.Treeview(pai, columns=(\"email\",), show=\"headings\")",
+            "O que faz: Exibe dados em linhas e colunas, com cabeçalho e seleção.",
+            "Argumentos principais: columns lista identificadores; show controla headings/tree; heading define título; insert adiciona linhas; selectmode define seleção.",
+            "Exemplo:",
+            "tree = ttk.Treeview(app, columns=(\"nome\", \"email\"), show=\"headings\")",
+            "tree.heading(\"nome\", text=\"Nome\")",
+            "tree.heading(\"email\", text=\"E-mail\")",
+            "tree.insert(\"\", \"end\", values=(\"Ana\", \"ana@example.com\"))",
+            "tree.pack(fill=\"both\", expand=True)",
+            "Resultado: Uma linha com duas colunas aparece na tabela.",
+            "Como funciona: A primeira coluna especial #0 fica escondida por show=\"headings\".",
+            "Atenção: Use tree.selection() e tree.item(item_id, \"values\") para consultar seleção."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "4.6",
+          "title": "Adicionar barra de menu",
+          "id": "ref-tkinter-4-6",
+          "lines": [
+            "menu = tk.Menu(app)\napp.configure(menu=menu)",
+            "O que faz: Associa um menu principal à janela.",
+            "Argumentos principais: add_command cria item; add_cascade agrupa submenu; add_separator desenha separador.",
+            "Exemplo:",
+            "menu = tk.Menu(app)",
+            "arquivo = tk.Menu(menu, tearoff=False)",
+            "arquivo.add_command(label=\"Salvar\", command=salvar)",
+            "arquivo.add_separator()",
+            "arquivo.add_command(label=\"Sair\", command=app.destroy)",
+            "menu.add_cascade(label=\"Arquivo\", menu=arquivo)",
+            "app.configure(menu=menu)",
+            "Resultado: Um menu Arquivo contém Salvar e Sair.",
+            "Como funciona: O menu filho é ligado ao menu principal por add_cascade.",
+            "Atenção: Callbacks de menu seguem a mesma regra: passe a função sem parênteses."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "4.7",
+          "title": "Encerrar corretamente e tratar fechamento",
+          "id": "ref-tkinter-4-7",
+          "lines": [
+            "app.protocol(\"WM_DELETE_WINDOW\", callback)",
+            "O que faz: Define o que acontece quando a pessoa clica no X da janela.",
+            "Argumentos principais: WM_DELETE_WINDOW é o protocolo para o fechamento solicitado pelo gerenciador de janelas.",
+            "Exemplo:",
+            "def ao_fechar():",
+            "    if messagebox.askyesno(\"Sair\", \"Fechar o aplicativo?\"):",
+            "        app.destroy()",
+            "",
+            "app.protocol(\"WM_DELETE_WINDOW\", ao_fechar)",
+            "Resultado: A janela pede confirmação e só fecha se a pessoa aceitar.",
+            "Como funciona: Sem substituição, fechar a raiz destrói a janela.",
+            "Atenção: Para tarefas em segundo plano, finalize recursos antes de destroy."
+          ],
+          "aliases": []
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Texto, desenho e controle avançado",
+      "id": "ref-tkinter-cap-5",
+      "intro": [
+        "Além de formulários, Tkinter oferece áreas de texto, listas, desenho vetorial e validação. Use esses componentes quando a interface precisa editar ou apresentar conteúdo maior."
+      ],
+      "content": [],
+      "aliases": [
+        "Text Listbox Canvas scroll validação"
+      ],
+      "sections": [
+        {
+          "number": "5.1",
+          "title": "Editar texto com Text",
+          "id": "ref-tkinter-5-1",
+          "lines": [
+            "text = tk.Text(master, width=..., height=..., wrap=\"word\", undo=True)",
+            "O que faz: Cria uma área multilinha para escrever e consultar texto.",
+            "Argumentos principais: width/height são medidas em caracteres/linhas; wrap controla quebra; undo habilita histórico; state pode ser normal/disabled.",
+            "Exemplo:",
+            "editor = tk.Text(app, width=50, height=12, wrap=\"word\", undo=True)",
+            "editor.pack(fill=\"both\", expand=True)",
+            "editor.insert(\"1.0\", \"Primeira linha\")",
+            "conteudo = editor.get(\"1.0\", \"end-1c\")",
+            "Resultado: O texto inicial aparece e get recupera o conteúdo sem a nova linha terminal automática.",
+            "Como funciona: Text usa índices especiais: 1.0 significa linha 1, caractere 0. end indica fim do conteúdo.",
+            "Atenção: end-1c evita capturar o caractere de nova linha final mantido pelo widget."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "5.2",
+          "title": "Percorrer e substituir texto",
+          "id": "ref-tkinter-5-2",
+          "lines": [
+            "text.delete(inicio, fim)\ntext.insert(indice, conteudo)",
+            "O que faz: Remove um intervalo ou insere conteúdo numa posição.",
+            "Argumentos principais: Índices podem ser 1.0, end, insert, sel.first e sel.last; marcas e tags permitem controle mais avançado.",
+            "Exemplo:",
+            "text.delete(\"1.0\", \"end\")",
+            "text.insert(\"1.0\", \"Conteúdo atualizado\")",
+            "Resultado: O conteúdo anterior é removido e o novo texto começa no início.",
+            "Como funciona: O índice insert aponta para o cursor atual; tags permitem aplicar formatação a intervalos.",
+            "Atenção: Teste índices com casos vazios e seleções antes de automatizar edição."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "5.3",
+          "title": "Criar uma lista com Listbox",
+          "id": "ref-tkinter-5-3",
+          "lines": [
+            "tk.Listbox(master, selectmode=\"browse\", height=...)",
+            "O que faz: Exibe itens selecionáveis.",
+            "Argumentos principais: selectmode browse seleciona um; extended permite múltiplos; insert adiciona; curselection retorna índices selecionados.",
+            "Exemplo:",
+            "lista = tk.Listbox(app, selectmode=\"browse\", height=5)",
+            "for nome in [\"Ana\", \"Beto\", \"Caio\"]:",
+            "    lista.insert(\"end\", nome)",
+            "lista.pack()",
+            "selecionados = lista.curselection()",
+            "Resultado: A lista mostra três nomes e informa o índice selecionado.",
+            "Como funciona: curselection retorna índices; use get(indice) para converter seleção em valor.",
+            "Atenção: Atenção: uma Listbox não oferece colunas; para dados tabulares, prefira ttk.Treeview."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "5.4",
+          "title": "Desenhar no Canvas",
+          "id": "ref-tkinter-5-4",
+          "lines": [
+            "canvas = tk.Canvas(master, width=..., height=..., bg=..., highlightthickness=...)",
+            "O que faz: Cria uma superfície para linhas, formas, textos e imagens.",
+            "Argumentos principais: width/height dimensões; bg fundo; create_line/create_rectangle/create_oval/create_text criam itens; tags identificam grupos.",
+            "Exemplo:",
+            "canvas = tk.Canvas(app, width=320, height=180, bg=\"white\", highlightthickness=0)",
+            "canvas.pack()",
+            "canvas.create_rectangle(20, 20, 140, 90, fill=\"#79A7FF\", tags=\"cartao\")",
+            "canvas.create_text(80, 55, text=\"Resumo\")",
+            "Resultado: Um retângulo azul e o texto Resumo aparecem no Canvas.",
+            "Como funciona: As coordenadas são relativas ao canto superior esquerdo; métodos retornam identificadores de itens.",
+            "Atenção: Canvas não é um gerenciador de layout; use pack/grid para colocar o Canvas na janela."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "5.5",
+          "title": "Mover e localizar itens do Canvas",
+          "id": "ref-tkinter-5-5",
+          "lines": [
+            "canvas.move(item_id, dx, dy)\ncanvas.coords(item_id)",
+            "O que faz: Altera posição de item ou consulta as coordenadas da sua caixa.",
+            "Argumentos principais: item_id pode ser retorno de create_* ou tag; dx/dy são deslocamentos.",
+            "Exemplo:",
+            "item = canvas.create_oval(30, 30, 60, 60, fill=\"tomato\")",
+            "canvas.move(item, 20, 10)",
+            "print(canvas.coords(item))",
+            "Resultado: O círculo se desloca 20 pixels na horizontal e 10 na vertical.",
+            "Como funciona: Tags permitem selecionar vários itens relacionados para mover, apagar ou configurar.",
+            "Atenção: Use canvas.delete(tag) para remover itens agrupados."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "5.6",
+          "title": "Adicionar rolagem a um componente",
+          "id": "ref-tkinter-5-6",
+          "lines": [
+            "scroll = ttk.Scrollbar(master, orient=\"vertical\", command=widget.yview)\nwidget.configure(yscrollcommand=scroll.set)",
+            "O que faz: Conecta uma barra de rolagem e o componente rolável.",
+            "Argumentos principais: orient vertical/horizontal; command chama view do widget; yscrollcommand recebe scroll.set.",
+            "Exemplo:",
+            "from tkinter import ttk",
+            "",
+            "texto = tk.Text(app, height=8)",
+            "barra = ttk.Scrollbar(app, orient=\"vertical\", command=texto.yview)",
+            "texto.configure(yscrollcommand=barra.set)",
+            "texto.pack(side=\"left\", fill=\"both\", expand=True)",
+            "barra.pack(side=\"right\", fill=\"y\")",
+            "Resultado: A barra controla o texto e acompanha a posição de rolagem.",
+            "Como funciona: A conexão precisa ser feita nos dois sentidos: barra move widget; widget atualiza barra.",
+            "Atenção: Para listas grandes, Treeview e Listbox também expõem yview."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "5.7",
+          "title": "Validar enquanto a pessoa digita",
+          "id": "ref-tkinter-5-7",
+          "lines": [
+            "validate=\"key\", validatecommand=(app.register(funcao), \"%P\")",
+            "O que faz: Permite aceitar ou rejeitar uma edição de Entry antes de aplicá-la.",
+            "Argumentos principais: validate define quando validar; register converte função em callback Tcl; %P representa o valor proposto.",
+            "Exemplo:",
+            "def aceitar_numero(proposto):",
+            "    return proposto.isdigit() or proposto == \"\"",
+            "",
+            "validacao = (app.register(aceitar_numero), \"%P\")",
+            "entrada = tk.Entry(app, validate=\"key\", validatecommand=validacao)",
+            "entrada.pack()",
+            "Resultado: A entrada aceita dígitos e vazio, permitindo apagar para corrigir.",
+            "Como funciona: O callback recebe o valor proposto antes da alteração do Entry.",
+            "Atenção: Valide de novo ao salvar; a regra de edição não substitui validação da lógica de negócio."
+          ],
+          "aliases": []
+        },
+        {
+          "number": "5.8",
+          "title": "Manter referência de imagem Tk",
+          "id": "ref-tkinter-5-8",
+          "lines": [
+            "imagem = tk.PhotoImage(file=\"logo.png\")\nrotulo.configure(image=imagem)",
+            "O que faz: Carrega imagem raster compatível e a mostra num widget.",
+            "Argumentos principais: PhotoImage suporta formatos conforme a compilação Tk; imagem deve permanecer referenciada em Python.",
+            "Exemplo:",
+            "imagem = tk.PhotoImage(file=\"logo.png\")",
+            "rotulo = tk.Label(app, image=imagem)",
+            "rotulo.pack()",
+            "Resultado: O rótulo mostra a imagem.",
+            "Como funciona: Se a referência imagem sair de escopo e for coletada, a imagem pode desaparecer.",
+            "Atenção: Para formatos adicionais ou redimensionamento, Pillow é uma biblioteca externa comum."
+          ],
+          "aliases": []
+        }
+      ]
+    }
+  ]
+}
