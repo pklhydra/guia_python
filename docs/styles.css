@@ -10,116 +10,86 @@
 
 
 /* =========================================================
-  APPLE DESIGN — refinamentos de acessibilidade e interação
-  Mantém todas as regras originais acima.
-  ========================================================= */
+   PYTHON DE BOLSO — APPLE-INSPIRED VISUAL REFINEMENT
+   This section intentionally changes the visible interface.
+   Existing selectors, IDs, and JavaScript hooks are preserved.
+   ========================================================= */
 
-.skip-link {
-  position: fixed;
-  z-index: 100;
-  top: 10px;
-  left: 10px;
-  transform: translateY(-160%);
-  padding: 10px 14px;
-  border: 2px solid var(--accent);
-  border-radius: 10px;
-  background: var(--paper);
-  color: var(--ink);
-  box-shadow: var(--shadow);
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
+:root {
+  --bg: #f4f6fa;
+  --paper: #ffffff;
+  --ink: #172033;
+  --muted: #68758a;
+  --line: #e1e6ef;
+  --soft: #edf1f7;
+  --accent: #2459c4;
+  --accent-soft: #e8efff;
+  --code: #101827;
+  --code-ink: #edf3ff;
+  --shadow: 0 18px 50px rgba(24, 43, 79, 0.07);
 }
-.skip-link:focus { transform: translateY(0); }
 
-:where(a, button, input, [role="button"], [tabindex]):focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
+:root[data-theme="dark"] {
+  --bg: #0b1018;
+  --paper: #121a26;
+  --ink: #edf2fb;
+  --muted: #a2aec1;
+  --line: #293548;
+  --soft: #1b2636;
+  --accent: #9bbaff;
+  --accent-soft: #1b2c4c;
+  --code: #080d14;
+  --code-ink: #edf3ff;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
 }
-.welcome-search:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
+
+html {
+  scroll-padding-top: calc(var(--top) + 30px);
 }
+
+body {
+  background:
+    radial-gradient(ellipse at 78% 0%, rgba(89, 132, 224, 0.075), transparent 34rem),
+    var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.topbar {
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  backdrop-filter: saturate(180%) blur(24px);
+  border-bottom-color: color-mix(in srgb, var(--line) 75%, transparent);
+  box-shadow: 0 4px 24px rgba(25, 40, 70, 0.025);
+}
+
+.brand-mark {
+  border-radius: 13px;
+  background: linear-gradient(145deg, #4b80f0, #2455bd);
+  box-shadow: 0 6px 16px rgba(50, 104, 213, 0.26);
+}
+
+.search-wrap {
+  background: color-mix(in srgb, var(--bg) 76%, var(--paper));
+  border-radius: 13px;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
 .search-wrap:focus-within {
+  background: var(--paper);
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 13%, transparent);
 }
 
-.icon-button,
-.library-button,
-.toc-chapter,
-.toc-link,
-.copy-button,
-.pager-link,
-.welcome-search {
-  -webkit-tap-highlight-color: transparent;
-  transition: background-color 160ms ease, border-color 160ms ease,
-    color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
-}
-.icon-button:active,
-.library-button:active,
-.copy-button:active,
-.toc-chapter:active { transform: scale(0.97); }
-
-.code-card:focus-within {
-  outline: 2px solid color-mix(in srgb, var(--accent) 65%, transparent);
-  outline-offset: 2px;
+.icon-button {
+  border-radius: 12px;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 
-@media (prefers-reduced-transparency: reduce) {
-  .topbar {
-    background: var(--paper);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
+.icon-button:hover {
+  background: var(--accent-soft);
 }
 
-@media (prefers-contrast: more) {
-  :root {
-    --muted: #4b5565;
-    --line: #aab3c2;
-    --accent: #1749ad;
-    --accent-soft: #e1e9ff;
-  }
-  :root[data-theme="dark"] {
-    --muted: #d0d8e5;
-    --line: #697586;
-    --accent: #b3caff;
-    --accent-soft: #26395f;
-  }
-  .search-wrap,
-  .icon-button,
-  .welcome,
-  .result-card,
-  .reference-list { border-width: 2px; }
+.icon-button:active {
+  transform: scale(0.96);
 }
-
-@media (max-width: 680px) {
-  .skip-link { font-size: 12px; }
-  .icon-button:active,
-  .library-button:active,
-  .copy-button:active,
-  .toc-chapter:active { transform: scale(0.98); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-  }
-  .icon-button,
-  .library-button,
-  .toc-chapter,
-  .toc-link,
-  .copy-button,
-  .pager-link,
-  .welcome-search,
-  .result-card,
-  .skip-link { transform: none !important; }
-}
-
